@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
-import brlLogo from '../assets/brllogo.png'
-import schema from '../assets/randomSchema.png'
 import Modal from 'react-modal';
 
 const Header = () => {
+
+  // Image Import
+  const brlLogo = "/assets/brllogo.png"
+  const schema = "/assets/randomSchema.png"
+
   const [isCheck, setIsCheck] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false);
 
