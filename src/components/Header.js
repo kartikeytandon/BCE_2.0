@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
+import Leaderboard from './Leaderboard';
 
 const Header = () => {
 
@@ -30,10 +31,10 @@ const Header = () => {
     },
   };
   
-
   const handleCheck = () => {
     setIsCheck(true)
     alert('you can now submit your response!')
+    
   }
   return (
     <header className='flex items-center justify-between mx-8'>
@@ -44,6 +45,9 @@ const Header = () => {
             </button>
             <button onClick={handleCheck} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                 Check
+            </button>
+            <button onClick={openLeaderboardModal} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+                Leaderboard
             </button>
             {
                 isCheck 
@@ -60,7 +64,8 @@ const Header = () => {
         >
             <button onClick={closeModal} className='bg-red-500 text-white font-bold py-2 px-4 rounded uppercase hover:bg-red-600'>close</button>
             <img src={schema} alt="" />
-      </Modal>
+        </Modal>
+        <Leaderboard />
     </header>
   )
 }
