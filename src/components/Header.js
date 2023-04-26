@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
+import { Link } from "react-router-dom";
 import Leaderboard from './Leaderboard';
 
 const Header = () => {
@@ -46,9 +47,10 @@ const Header = () => {
             <button onClick={handleCheck} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                 Check
             </button>
-            <button onClick={openLeaderboardModal} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
+            <Link to="/leaderboard" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
                 Leaderboard
-            </button>
+            </Link>
+
             {
                 isCheck 
                     ? <button type="submit" className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded'>Final Submit</button>
@@ -62,10 +64,9 @@ const Header = () => {
         style={customStyles}
         contentLabel="Example Modal"
         >
-            <button onClick={closeModal} className='bg-red-500 text-white font-bold py-2 px-4 rounded uppercase hover:bg-red-600'>close</button>
+            <button onClick={closeModal} className='bg-red-500 text-white font-bold py-2 px-4 rounded uppercase hovfer:bg-red-600'>close</button>
             <img src={schema} alt="" />
         </Modal>
-        <Leaderboard />
     </header>
   )
 }
