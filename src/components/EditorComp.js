@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import useLocalStorage from '../hooks/useLocalStorage'
 import Editor from './Editor'
+import Header from './Header'
 
 const EditorComp = () => {
     const [html, setHtml] = useLocalStorage('html', '')
@@ -21,6 +22,7 @@ const EditorComp = () => {
       }, [html, css]);
   return (
     <>
+    <Header />
     <div className="pane top-pane overflow-auto resize-y max-h-[70vh] h-[50vh]">
         <Editor
           language="xml"
