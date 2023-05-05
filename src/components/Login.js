@@ -1,38 +1,46 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
+import { Navigate } from 'react-router-dom';
+import axios from 'axios';
+
 const brlWhiteLogo = "/assets/brlWhiteLogo.png"
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
 const Login = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
+    let email;
+
   const onSuccess = (res) => {
     console.log("Login success", res.profileObj);
+    // console.log(res.getAuthResponse().access_token);
+    setLoggedIn(true)
+    email = res.profileObj.email
+    // console.log(email);
+
+    axios.post('http://43.206.130.198/login/', { email })
+        .then(response => {
+            console.log(response.data);
+        })
+        .catch(error => {
+            console.error(error);
+        });
   }
   const onFailure = (res) => {
     console.log("Login failed", res);
   }
+
+  if (loggedIn) {
+    return <Navigate to="/schemas" />;
+  }
+
+
   return (
     <section className='bg-blue-500 h-screen'>
         <div className='w-fit mx-auto py-20'>
             <img src={brlWhiteLogo} alt="" />
         </div>
         <article className='border w-fit text-center p-10 mx-auto'>
-            {/* <h2 className='text-4xl text-white pb-4'>Blockverse 2.0</h2>
-            <div className='m-4 ml-0 mr-0'>
-                <input type="text" placeholder='Username' className='w-64 h-8 outline-none pl-2' />
-            </div>
-            <div className='m-4 ml-0 mr-0'>
-                <input type="password" placeholder='Password' className='w-64 h-8 outline-none pl-2' />
-            </div>
-            <div className='mt-6'>
-                <Link className='border py-2 px-4 text-white' to={'/home'}>
-                    Login
-                </Link>
-            </div> */}
-            {/* <Link className='border py-2 px-4 text-white' to={'/schemas'}>
-                    Login
-            </Link> */}
-
             <div>
                 <GoogleLogin
                     clientId={clientId}

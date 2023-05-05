@@ -20,9 +20,12 @@ const EditorComp = () => {
       
         return () => clearTimeout(timeout);
       }, [html, css]);
+
+      // console.log(html);
+      // console.log(css);
   return (
     <>
-    <Header />
+    <Header html={html} css={css} />
     <div className="pane top-pane overflow-auto resize-y max-h-[70vh] h-[50vh]">
         <Editor
           language="xml"

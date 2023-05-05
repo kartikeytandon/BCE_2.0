@@ -13,26 +13,44 @@ const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleuserc
 function App() {
   // const iframeRef = useRef(null);
   const [screenshot, setScreenshot] = useState(null);
+  // const [accessToken, setAccessToken] = useState('');
+
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.client.init({
+  //       clientId: clientId,
+  //       scope: ""
+  //     }).then(() => {
+  //       const user = gapi.auth2.getAuthInstance().currentUser.get();
+  //       if (user.isSignedIn()) {
+  //         setAccessToken(user.getAuthResponse().access_token);
+  //       }
+  //     });
+  //   }
+
+  //   gapi.load('client:auth2', start);
+  //   console.log(accessToken);
+  // }, []);
+
+  const [accessToken, setAccessToken] = useState('');
 
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: ""
-      })
+        scope: "",
+        hosted_domain: 'akgec.ac.in'
+      }).then(() => {
+        const user = gapi.auth2.getAuthInstance().currentUser.get();
+        if (user.isSignedIn()) {
+          setAccessToken(user.getAuthResponse().access_token);
+        }
+      });
     }
 
-    gapi.load('client:auth2'. start)
-  })
-  
-  // const [ expanded, setExpanded] = useState(false);
-  
-  // const handleScreenshot = () => {
-  //   html2canvas(iframeRef.current.contentDocument.body).then(canvas => {
-  //     const img = canvas.toDataURL();
-  //     setScreenshot(img);
-  //   });
-  // };
+    gapi.load('client:auth2', start);
+  }, []);
+
 
   return (
     <>
@@ -44,7 +62,6 @@ function App() {
         <Route path='/leaderboard' element={<Leaderboard />} />
       </Routes>
 
-      
     </>
   )
 }
