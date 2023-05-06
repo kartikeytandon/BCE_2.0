@@ -11,7 +11,6 @@ const LeadHead = () => {
                       <th class="px-4 py-2 text-2xl">Position</th>
                       <th class="px-4 py-2 text-2xl">Team Name</th>
                       <th class="px-4 py-2 text-2xl">Current Accuracy</th>
-                      <th class="px-4 py-2 text-2xl">Checks Made</th>
                   </tr>     
               </thead>
               <TeamLeaderboard />

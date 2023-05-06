@@ -7,6 +7,7 @@ import EditorComp from './EditorComp';
 import Login from './Login';
 import Home from './Home';
 import { gapi } from 'gapi-script';
+import Submitted from './Submitted';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
@@ -60,6 +61,7 @@ function App() {
         <Route path='/schemas' element={<Home />} />
         <Route path='/blockverse' element={<EditorComp />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
+        <Route path='/submitted' element={<Submitted />} />
       </Routes>
 
     </>

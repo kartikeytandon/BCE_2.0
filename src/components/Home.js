@@ -39,12 +39,17 @@
 // export default Home
 
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const brlWhiteLogo = "/assets/brlWhiteLogo.png"
 
 const Home = () => {
+  // const accessToken = localStorage.getItem('accessToken')
+  const accessToken = Cookies.get('accessToken');
+  // console.log(accessToken);
+
   const schemas = [
     { id: 1, name: 'Schema 1' },
     { id: 2, name: 'Schema 2' },
@@ -54,8 +59,13 @@ const Home = () => {
 
   const handleClick = (id) => {
     console.log(`Schema ${id} clicked`);
-    let schema = {id}
-    axios.post('http://43.206.130.198/schema_selection/', { schema })
+    console.log(accessToken);
+    let schema = `${id}`
+    axios.post('http://43.206.130.198/schema_selection/', { schema }, {
+      headers: {
+        Authorization: `Token ${accessToken}`
+      }
+    })  
         .then(response => {
             console.log(response.data);
         })

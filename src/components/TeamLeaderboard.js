@@ -1,44 +1,82 @@
-import React from 'react'
+// import React, { useEffect, useState } from 'react'
+// import axios from 'axios'
+// import Cookies from 'js-cookie';
+
+// const TeamLeaderboard = () => {
+//   const accessToken = Cookies.get('accessToken');
+//   const [teamDetails, setTeamDetails] = useState([])
+
+//   useEffect(() => {
+//     axios.get('http://43.206.130.198/leaderboard/', {
+//       headers: {
+//         Authorization: `Token ${accessToken}`
+//       }
+//     })  
+//     .then(response => {
+//       console.log(response.data);
+//       setTeamDetails(response.data.message)
+//       console.log(response.data.message)
+//       console.log(teamDetails);
+//     })
+//     .catch(error => {
+//       console.error(error);
+//     });
+//   }, [])
+//   return (
+//     <tbody>
+//         {
+//           teamDetails.map((team, index) => {
+//             <tr className='bg-gray-100 m-4' key={index}>
+//               <td className="px-4 py-2 text-xl">{index+1}</td>
+//               <td className="px-4 py-2 text-xl">{team.team_name}</td>
+//               <td className="px-4 py-2 text-xl">{team.score}</td>
+//             </tr>
+//           })
+//         }
+
+//     </tbody>
+//   )
+// }
+
+// export default TeamLeaderboard
+
+import React, { useEffect, useState } from 'react'
+import axios from 'axios'
+import Cookies from 'js-cookie';
 
 const TeamLeaderboard = () => {
+  const accessToken = Cookies.get('accessToken');
+  const [teamDetails, setTeamDetails] = useState([])
+
+  useEffect(() => {
+    axios.get('http://43.206.130.198/leaderboard/', {
+      headers: {
+        Authorization: `Token ${accessToken}`
+      }
+    })  
+    .then(response => {
+      console.log(response.data);
+      setTeamDetails(response.data.message)
+      console.log(response.data.message)
+      console.log(teamDetails);
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, [])
   return (
     <tbody>
-      <tr className='bg-gray-100 m-4'>
-        <td class="px-4 py-2 text-xl">1</td>
-        <td class="px-4 py-2 text-xl">Team A</td>
-        <td class="px-4 py-2 text-xl">95%</td>
-        <td class="px-4 py-2 text-xl">100</td>
-      </tr>
-      <tr className='bg-gray-100 m-4'>
-        <td class="px-4 py-2 text-xl">2</td>
-        <td class="px-4 py-2 text-xl">Team A</td>
-        <td class="px-4 py-2 text-xl">95%</td>
-        <td class="px-4 py-2 text-xl">100</td>
-      </tr>
-      <tr className='bg-gray-100 m-4'>
-        <td class="px-4 py-2 text-xl">3</td>
-        <td class="px-4 py-2 text-xl">Team A</td>
-        <td class="px-4 py-2 text-xl">95%</td>
-        <td class="px-4 py-2 text-xl">100</td>
-      </tr>
-      <tr className='bg-gray-100 m-4'>
-        <td class="px-4 py-2 text-xl">4</td>
-        <td class="px-4 py-2 text-xl">Team A</td>
-        <td class="px-4 py-2 text-xl">95%</td>
-        <td class="px-4 py-2 text-xl">100</td>
-      </tr>
-      <tr className='bg-gray-100 m-4'>
-        <td class="px-4 py-2 text-xl">5</td>
-        <td class="px-4 py-2 text-xl">Team A</td>
-        <td class="px-4 py-2 text-xl">95%</td>
-        <td class="px-4 py-2 text-xl">100</td>
-      </tr>
-      <tr className='bg-gray-100 m-4'>
-        <td class="px-4 py-2 text-xl">6</td>
-        <td class="px-4 py-2 text-xl">Team A</td>
-        <td class="px-4 py-2 text-xl">95%</td>
-        <td class="px-4 py-2 text-xl">100</td>
-      </tr>
+        {
+          teamDetails.map((team, index) => {
+            return (
+              <tr className='bg-gray-100 m-4' key={index}>
+                <td className="px-4 py-2 text-xl">{index+1}</td>
+                <td className="px-4 py-2 text-xl">{team.team_name}</td>
+                <td className="px-4 py-2 text-xl">{team.score}</td>
+              </tr>
+            )
+          })
+        }
     </tbody>
   )
 }

@@ -1,19 +1,22 @@
 import React, { useState } from 'react'
 import Modal from 'react-modal';
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import Leaderboard from './Leaderboard';
 import Logout from './Logout';
 import EditorComp from './EditorComp';
 import axios from 'axios';
+import Cookies from 'js-cookie';
 
 const Header = (props) => {
 
   // Image Import
   const brlLogo = "/assets/brllogo.png"
   const schema = "/assets/randomSchema.png"
+  const accessToken = Cookies.get('accessToken');
 
   const [isCheck, setIsCheck] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [submitted, setSubmitted] = useState(false)
 
   function openModal() {
     setIsOpen(true);
@@ -45,13 +48,28 @@ const Header = (props) => {
     let html_code = props.html
     let css_code = props.css
     let submitted = true
-    axios.post('http://43.206.130.198/submit/', { html_code, css_code, submitted })
+    setSubmitted(true)
+    axios.post('http://43.206.130.198/submit/', { html_code, css_code, submitted }, {
+      headers: {
+        Authorization: `Token ${accessToken}`
+      }
+    })
         .then(response => {
             console.log(response.data);
         })
         .catch(error => {
             console.error(error);
         });
+  }
+
+  if(submitted) {
+    return (
+      <Navigate
+        to={{
+          pathname: '/submitted',
+        }}
+      />
+    )
   }
   return (
     <header className='flex items-center justify-between mx-8'>
