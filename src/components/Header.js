@@ -15,16 +15,16 @@ const Header = (props) => {
   const accessToken = Cookies.get('accessToken');
 
   const [isCheck, setIsCheck] = useState(false)
-const [modalIsOpen, setIsOpen] = React.useState(false);
-const [submitted, setSubmitted] = useState(false)
-const [currScore, setCurrScore] = useState(() => {
-  const score = localStorage.getItem('currScore');
-  return score ? Number(score) : 0;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  const [submitted, setSubmitted] = useState(false)
+  const [currScore, setCurrScore] = useState(() => {
+  const score = localStorage.getItem('currScore')
+  return score ? Number(score) : 0
 });
 
-useEffect(() => {
-  localStorage.setItem('currScore', currScore);
-}, [currScore]);
+  useEffect(() => {
+    localStorage.setItem('currScore', currScore);
+  }, [currScore]);
 
   // localStorage.setItem('currentScore', 0);
 
@@ -55,6 +55,9 @@ useEffect(() => {
     // let html_code = `${props.html}`
     let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
     let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "")
+
+    console.log(html_code);
+    console.log(css_code);
 
     
     axios.post('http://43.206.130.198/score/', { html_code, css_code }, {
