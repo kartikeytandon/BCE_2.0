@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import useLocalStorage from '../hooks/useLocalStorage'
-import Editor from './Editor'
-import Header from './Header'
+import useLocalStorage from '../../hooks/useLocalStorage'
+import Editor from '../Editor'
+import Header from '../Header'
+import './EditorComp.css'
 
 const EditorComp = () => {
   const [html, setHtml] = useLocalStorage('html', '')

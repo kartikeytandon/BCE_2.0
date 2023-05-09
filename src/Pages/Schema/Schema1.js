@@ -1,9 +1,9 @@
 import React, { useState } from 'react'
-import schemaSample from '../../assets/schemaSample.png'
 import Modal from 'react-modal';
 import { Navigate } from 'react-router-dom';
 
 const Schema1 = () => {
+  const schemaSample = "/assets/schemaSample.png"
     const customStyles = {
         content: {
           top: '50%',
