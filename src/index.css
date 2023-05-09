@@ -27,7 +27,7 @@ body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background-image: url('../public/assets/bg.png');
+  background-image: url('./assets/bg.png');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
