@@ -5,7 +5,7 @@ import brlLogo from '../assets/brlLogo2.png'
 
 const Home = () => {
   return (
-    <section>
+    <section className='homeSection'>
         <Head />
         <article className='flex flex-col items-center justify-center gap-6 loginDiv'>
             <img src={brlLogo} alt="" />
