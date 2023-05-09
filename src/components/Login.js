@@ -41,7 +41,7 @@ const Login = () => {
     return (
       <Navigate
         to={{
-          pathname: '/schemas',
+          pathname: '/schema',
           // state: { accessToken: accessToken } 
           // state: accessToken
         }}
@@ -51,11 +51,8 @@ const Login = () => {
 
 
   return (
-    <section className='bg-blue-500 h-screen'>
-        <div className='w-fit mx-auto py-20'>
-            <img src={brlWhiteLogo} alt="" />
-        </div>
-        <article className='border w-fit text-center p-10 mx-auto'>
+    <section className=''>
+        <article className='w-fit text-center p-10 mx-auto'>
             <div>
                 <GoogleLogin
                     clientId={clientId}
@@ -67,7 +64,6 @@ const Login = () => {
                 />
             </div>
         </article>
-        
     </section>
   )
 }
