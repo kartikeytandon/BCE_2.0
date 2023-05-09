@@ -1,164 +1,74 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Editor from './Editor'
-import useLocalStorage from '../hooks/useLocalStorage'
 import Header from './Header'
 import html2canvas from 'html2canvas';
+import { Route, Routes } from 'react-router-dom';
+import Leaderboard from './Leaderboard';
+import EditorComp from './EditorComp';
+import Login from './Login';
+import Home from './Home';
+import { gapi } from 'gapi-script';
+import Submitted from './Submitted';
+
+const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
 function App() {
   // const iframeRef = useRef(null);
   const [screenshot, setScreenshot] = useState(null);
-  const [html, setHtml] = useLocalStorage('html', '')
-  const [css, setCss] = useLocalStorage('css', '')
-  // const [js, setJs] = useLocalStorage('js', '')
-  const [srcDoc, setSrcDoc] = useState('')
-  // const [ expanded, setExpanded] = useState(false);
-  
+  // const [accessToken, setAccessToken] = useState('');
+
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.client.init({
+  //       clientId: clientId,
+  //       scope: ""
+  //     }).then(() => {
+  //       const user = gapi.auth2.getAuthInstance().currentUser.get();
+  //       if (user.isSignedIn()) {
+  //         setAccessToken(user.getAuthResponse().access_token);
+  //       }
+  //     });
+  //   }
+
+  //   gapi.load('client:auth2', start);
+  //   console.log(accessToken);
+  // }, []);
+
+  const [accessToken, setAccessToken] = useState('');
+
   useEffect(() => {
-    const timeout = setTimeout(() => {
-      setSrcDoc(
-        `<html>
-          <body>${html}</body>
-          <style>${css}</style>
-        </html>`
-      );
-    }, 250);
-  
-    return () => clearTimeout(timeout);
-  }, [html, css]);
-  
-  // const handleScreenshot = () => {
-  //   html2canvas(iframeRef.current.contentDocument.body).then(canvas => {
-  //     const img = canvas.toDataURL();
-  //     setScreenshot(img);
-  //   });
-  // };
+    function start() {
+      gapi.client.init({
+        clientId: clientId,
+        scope: "",
+        hosted_domain: 'akgec.ac.in'
+      }).then(() => {
+        const user = gapi.auth2.getAuthInstance().currentUser.get();
+        if (user.isSignedIn()) {
+          setAccessToken(user.getAuthResponse().access_token);
+        }
+      });
+    }
+
+    gapi.load('client:auth2', start);
+  }, []);
+
 
   return (
     <>
-      <Header />
-      {/* <button onClick={handleScreenshot}>Take Screenshot</button> */}
-      {/* <div className="pane top-pane" style={{height : `${expanded ? "50vh" : "900vh"}`}}> */}
-      <div className="pane top-pane overflow-auto resize-y max-h-[70vh] h-[50vh]">
-        <Editor
-          language="xml"
-          displayName="HTML"
-          value={html}
-          onChange={setHtml}
-        />
-        <Editor
-          language="css"
-          displayName="CSS"
-          value={css}
-          onChange={setCss}
-        />
-        {/* <Editor
-          language="javascript"
-          displayName="JS"
-          value={js}
-          onChange={setJs}
-        /> */}
+      {/* <Header /> */}
+      <Routes>
+        <Route path='/' element={<Login />} />
+        <Route path='/schemas' element={<Home />} />
+        <Route path='/blockverse' element={<EditorComp />} />
+        <Route path='/leaderboard' element={<Leaderboard />} />
+        <Route path='/submitted' element={<Submitted />} />
+      </Routes>
 
-      </div>
-      {/* <div className="pane" style={{height : `${expanded ? "90vh" : "50vh"}`}}> */}
-      <div className="pane">
-        <iframe
-          srcDoc={srcDoc}
-          title="output"
-          sandbox="allow-scripts"
-          frameBorder="0"
-          // ref={iframeRef}
-          width="100%"
-          height="100%"
-        />
-      </div>
-      {/* {screenshot && <img src={screenshot} alt="Screenshot" />} */}
     </>
   )
 }
 
 export default App;
 
-
-  // import React, { useState, useEffect, useRef } from 'react'
-  // import Editor from './Editor'
-  // import useLocalStorage from '../hooks/useLocalStorage'
-  // import Header from './Header'
-  // import html2canvas from 'html2canvas';
-
-  // function App() {
-  //   const iframeRef = useRef(null);
-  //   const [screenshot, setScreenshot] = useState(null);
-  //   const [html, setHtml] = useLocalStorage('html', '')
-  //   const [css, setCss] = useLocalStorage('css', '')
-  //   const [srcDoc, setSrcDoc] = useState('')
-
-  //   useEffect(() => {
-  //     const timeout = setTimeout(() => {
-  //       setSrcDoc(
-  //         `<html>
-  //           <body>${html}</body>
-  //           <style>${css}</style>
-  //         </html>`
-  //       );
-  //     }, 250);
-    
-  //     return () => clearTimeout(timeout);
-  //   }, [html, css]);
-    
-  //   const handleScreenshot = () => {
-  //     const iframe = iframeRef.current;
-  //     if (iframe && iframe.contentDocument) {
-  //       html2canvas(iframe.contentDocument).then(canvas => {
-  //         const img = canvas.toDataURL();
-  //         setScreenshot(img);
-    
-  //         const link = document.createElement('a');
-  //         link.download = 'screenshot.png';
-  //         link.href = img;
-  //         link.click();
-  //       });
-  //     }
-  //   };    
-    
-
-  //   // const handleIframeLoad = () => {
-  //   //   handleScreenshot();
-  //   // };
-
-  //   return (
-  //     <>
-  //       <Header />
-  //       <button onClick={handleScreenshot}>Take Screenshot</button>
-  //       <div className="pane top-pane overflow-auto resize-y max-h-[70vh] h-[50vh]">
-  //         <Editor
-  //           language="xml"
-  //           displayName="HTML"
-  //           value={html}
-  //           onChange={setHtml}
-  //         />
-  //         <Editor
-  //           language="css"
-  //           displayName="CSS"
-  //           value={css}
-  //           onChange={setCss}
-  //         />
-  //       </div>
-  //       <div className="pane">
-  //         <iframe
-  //           srcDoc={srcDoc}
-  //           title="output"
-  //           sandbox="allow-scripts"
-  //           frameBorder="0"
-  //           ref={iframeRef}
-  //           width="100%"
-  //           height="100%"
-  //           // onLoad={handleIframeLoad}
-  //         />
-  //       </div>
-  //       {screenshot && <img src={screenshot} alt="Screenshot" />}
-  //       {/* <a href={screenshot} download="screenshot.png">Download Screenshot</a> */}
-  //     </>
-  //   )
-  // }
-
-  // export default App;
+// Client_ID: 908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com
+// Client_Secret: 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
