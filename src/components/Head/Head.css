@@ -1,0 +1,12 @@
+.headDiv {
+    font-family: 'Iceberg', cursive;
+}
+.loginDiv {
+    background: rgba(0, 10, 39, 0.64);
+    mix-blend-mode: normal;
+    border: 2px solid #2E003A;
+    backdrop-filter: blur(8.5px);
+    width: 20rem;
+    height: 18rem;
+    margin: auto;
+}

@@ -1,13 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
-import Header from './Header'
+import Header from './components/Header'
 import html2canvas from 'html2canvas';
 import { Route, Routes } from 'react-router-dom';
-import Leaderboard from './Leaderboard';
-import EditorComp from './EditorComp';
-import Login from './Login';
-import Home from './Home';
+import Leaderboard from './components/Leaderboard';
+import EditorComp from './components/EditorComp';
+import Login from './components/Login';
+// import Home from './components/home';
 import { gapi } from 'gapi-script';
-import Submitted from './Submitted';
+import Submitted from './components/Submitted';
+
+import Home from './Pages/Home';
+import Logout from './components/Logout';
+import Schema from './Pages/Schema/Schema';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
@@ -62,6 +66,11 @@ function App() {
         <Route path='/blockverse' element={<EditorComp />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
         <Route path='/submitted' element={<Submitted />} />
+
+        {/* ***** */}
+        <Route path='/newHome' element={<Home />} />
+        <Route path='/logout' element={<Logout />} />
+        <Route path='/schema' element={<Schema />} />
       </Routes>
 
     </>
