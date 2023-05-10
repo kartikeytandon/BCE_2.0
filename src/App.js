@@ -9,7 +9,7 @@ import Login from './components/Login';
 import { gapi } from 'gapi-script';
 import Submitted from './components/Submitted';
 
-import Home from './Pages/Home';
+import Home from './Pages/Home/Home';
 import Logout from './components/Logout';
 import Schema from './Pages/Schema/Schema';
 
