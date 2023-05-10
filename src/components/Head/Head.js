@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import './Head.css'
-import blockverseLogo from '../../assets/blockverseLogo.png'
+// import blockverseLogo from '../../assets/blockverseLogo.png'
 import Modal from 'react-modal';
 
 const Head = () => {
+  const blockverseLogo = "/assets/blockverseLogo.png"
   return (
     <article className='flex flex-col items-center justify-center py-10 gap-4'>
       <img src={blockverseLogo} className='w-1/3 sm:w-2/5' alt="" />
