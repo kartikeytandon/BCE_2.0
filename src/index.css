@@ -27,10 +27,13 @@ body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
+<<<<<<< HEAD
   background-image: url('../public/assets/bg.png');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
+=======
+>>>>>>> ab717a60f17255c3eec41205574ab76975641810
 }
 
 .top-pane {
@@ -95,4 +98,13 @@ body {
   border-bottom-left-radius: .5rem;
   border-bottom-right-radius: .5rem;
   overflow: hidden;
+}
+
+/* Home CSS */
+.homeSection {
+  background-image: url('../public/assets/bg.png');
+  background-size: cover;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  height: 100vh;
 }

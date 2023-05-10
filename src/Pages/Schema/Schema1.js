@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
+<<<<<<< HEAD
 // import schemaSample from '../../assets/schemaSample.png'
+=======
+>>>>>>> ab717a60f17255c3eec41205574ab76975641810
 import Modal from 'react-modal';
 import { Navigate } from 'react-router-dom';
 

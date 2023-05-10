@@ -1,6 +1,9 @@
 import React, { useState } from 'react'
 import './Head.css'
+<<<<<<< HEAD
 // import blockverseLogo from '../../assets/blockverseLogo.png'
+=======
+>>>>>>> ab717a60f17255c3eec41205574ab76975641810
 import Modal from 'react-modal';
 
 const Head = () => {

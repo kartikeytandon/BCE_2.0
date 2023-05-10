@@ -3,7 +3,7 @@ import Header from './components/Header'
 import html2canvas from 'html2canvas';
 import { Route, Routes } from 'react-router-dom';
 import Leaderboard from './components/Leaderboard';
-import EditorComp from './components/EditorComp';
+import EditorComp from './components/EditorComp/EditorComp';
 import Login from './components/Login';
 // import Home from './components/home';
 import { gapi } from 'gapi-script';
