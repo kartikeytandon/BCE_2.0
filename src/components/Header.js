@@ -30,6 +30,21 @@ const Header = (props) => {
   return score ? Number(score) : 0
 });
 
+  let timeLeft = 20;
+
+  const checkDisabled = () => {
+    const intervalId = setInterval(() => {
+      timeLeft--;
+      console.log(`Time left: ${timeLeft}s`);
+  
+      if (timeLeft === 0) {
+        clearInterval(intervalId)
+        console.log('Timer ended!')
+        setDisabled(false)
+      }
+    }, 1000);
+  }
+
   useEffect(() => {
     localStorage.setItem('currScore', currScore);
   }, [currScore]);
@@ -62,7 +77,9 @@ const Header = (props) => {
   };      
   
   const handleCheck = () => {
-    setIsCheck(true);
+    setIsCheck(true)
+    setDisabled(true)
+    checkDisabled()
     alert('you can now submit your response!');
   
     // let html_code = `${props.html}`
@@ -151,14 +168,23 @@ const Header = (props) => {
               </Link>
             </button>
           </div>
-          <div className='flex'>
-            <button onClick={() => {
-              handleCheck()
-            }} className='headBtn flex items-center gap-2 px-5 py-2'>
-              <span className='text-xl'>CHECK</span>
-              <img src={checkIcon} alt="" className='ml-2' />
-            </button>
-          </div>
+          {
+            disabled ? 
+            <div className='flex'>
+              <button className='headBtn flex items-center gap-2 px-5 py-2'>
+                <span className='text-xl text-gray-500'>CHECK</span>
+                <img src={checkIcon} alt="" className='ml-2' />
+              </button>
+            </div> : 
+            <div className='flex'>
+              <button onClick={() => {
+                handleCheck()
+              }} className='headBtn flex items-center gap-2 px-5 py-2'>
+                <span className='text-xl'>CHECK</span>
+                <img src={checkIcon} alt="" className='ml-2' />
+              </button>
+            </div>
+          }
 
             {
                 isCheck 
