@@ -17,7 +17,7 @@ const Login = () => {
   const onSuccess = (res) => {
     console.log("Login success", res.profileObj);
     // console.log(res.getAuthResponse().access_token);
-    setLoggedIn(true)
+    // setLoggedIn(true)
     email = res.profileObj.email
     // console.log(email);
 
@@ -28,6 +28,13 @@ const Login = () => {
             accessToken =  response.data.token
             // localStorage.setItem('accessToken', accessToken)
             Cookies.set('accessToken', accessToken);
+
+            if(response.data.message === "User not registered") {
+              setLoggedIn(false)
+              alert("You're not registered for the event. Please check your Login Mail!")
+            } else {
+              setLoggedIn(true)
+            }
         })
         .catch(error => {
             console.error(error);

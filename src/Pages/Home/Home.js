@@ -34,23 +34,3 @@ const Home = () => {
 }
 
 export default Home
-
-
-{/* <article className='flex justify-center items-center gap-20'>
-  <div className='instructions-container flex flex-col items-center gap-4 w-2/6'>
-    <h1 className='instructions-title text-3xl font-bold'>INSTRUCTIONS</h1>
-    <ul className='instructions-list'>
-      <li className='instruction-item'>Choose one schema from the provided set and develop it.</li>
-      <li className='instruction-item'>Develop the UI entirely on this platform using HTML and CSS.</li>
-      <li className='instruction-item'>You cannot change your chosen schema.</li>
-      <li className='instruction-item'>Preview your schema during development.</li>
-      <li className='instruction-item'>All assets needed for the UI will be provided.</li>
-      <li className='instruction-item'>Check your score and standing on the leaderboard.</li>
-      <li className='instruction-item'>Final submission cannot be changed.</li>
-    </ul>
-  </div>
-  <div className='login-container flex flex-col items-center'>
-    <img className='logo' src={brlLogo} alt='BRL Logo' />
-    <Login />
-  </div>
-</article> */}
