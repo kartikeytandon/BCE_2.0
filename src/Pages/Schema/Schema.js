@@ -10,7 +10,7 @@ const Schema = () => {
         <div className='w-[60%]'>
           <Head />
         </div>
-        <article className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32'>
+        <article className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32 rounded-lg'>
             <Schema1 />
         </article>
 

@@ -11,7 +11,7 @@ const Home = () => {
   return (
     <section className='homeSection flex flex-col justify-between pb-5 items-center'>
         <Head />
-        <article className='flex items-center justify-center w-[80vw] loginDiv p-4'>
+        <article className='flex items-center justify-center w-[80vw] loginDiv p-4 rounded-lg'>
           {/* INSTRUCTIONS ON LOGIN PAGE */}
             <div className='w-2/3 border border-l-0 border-t-0 border-b-0 border-r-2 border-opacity-50 border-r-secondary pr-10'>
               <h3 className='text-secondary font-lato uppercase text-2xl text-center '>instructions</h3>
@@ -35,7 +35,7 @@ const Home = () => {
         </article>
 
         {/* Footer Logo */}
-        <img src={brlLogo} alt="brl_logo" className='w-[10rem] aspect-auto invert' />
+        <img src={brlLogo} alt="brl_logo" className='w-[8rem] aspect-auto invert' />
     </section>
   )
 }

@@ -44,7 +44,7 @@ const Schema1 = () => {
           mixBlendMode: 'normal',
           border: '2px solid #2E003A',
           backdropFilter: 'blur(8.5px)',
-          borderRadius: '20px',
+          borderRadius: '8px',
         },
       };      
 
@@ -68,7 +68,7 @@ const Schema1 = () => {
   return (
     <div className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32'>
       {schemas.map(schema => (
-        <div className='schema w-fit flex flex-col justify-center items-center gap-4 px-8 py-4' key={schema.id}>
+        <div className='schema w-fit flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-lg' key={schema.id}>
           <h1 className='text-xl tracking-wide'>{schema.name}</h1>
           <img src={schemaSample} alt="" className='w-52' />
           <button className='tracking-wide py-2 px-4' onClick={openModal}>SELECT</button>

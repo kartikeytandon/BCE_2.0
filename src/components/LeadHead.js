@@ -7,11 +7,11 @@ const LeadHead = () => {
     <>
       <div class="container px-12">
         <div className='flex items-center justify-center gap-80'>
-          <button className='px-4 py-2'>
-            <Link className='text-white text-lg' to='/blockverse'>Go Back to Editor</Link>
-          </button>
           <h1 className='text-4xl text-center py-4'>LEADERBOARD</h1>
           <h1 className='text-4xl text-center py-4 invisible'>HELLO THERE</h1>
+          <button className='px-4 py-2'>
+            <Link className='text-white text-lg' to='/blockverse'>CLOSE</Link>
+          </button>
         </div>
           <table class="table-auto w-full border-collapse leadTable">
               <thead>
