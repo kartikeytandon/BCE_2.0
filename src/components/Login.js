@@ -4,8 +4,6 @@ import { Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 
-const brlWhiteLogo = "/assets/brlWhiteLogo.png"
-
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
 const Login = () => {
@@ -16,10 +14,7 @@ const Login = () => {
 
   const onSuccess = (res) => {
     console.log("Login success", res.profileObj);
-    // console.log(res.getAuthResponse().access_token);
-    // setLoggedIn(true)
     email = res.profileObj.email
-    // console.log(email);
 
     axios.post('http://43.206.130.198/login/', { email })
         .then(response => {
@@ -56,19 +51,40 @@ const Login = () => {
     )
   }
 
+  // const GoogleLogin = () => {
+  //   return (
+  //     <GoogleLogin
+  //           clientId={clientId}    
+  //           buttonText="Login"
+  //           onSuccess={onSuccess}
+  //           onFailure={onFailure}
+  //           cookiePolicy={'single_host_origin'}
+  //           isSignedIn={true}
+  //     />
+  //   )
+  // }
+  const CustomGoogleButton = ({ onClick }) => (
+    <button onClick={onClick} className="custom-google-button px-6 py-2">
+      LOGIN
+    </button>
+  );
+
 
   return (
     <section className=''>
         <article className='w-fit text-center p-10 mx-auto'>
             <div>
-                <GoogleLogin
-                    clientId={clientId}
-                    buttonText="Login"
-                    onSuccess={onSuccess}
-                    onFailure={onFailure}
-                    cookiePolicy={'single_host_origin'}
-                    isSignedIn={true}
-                />
+            <GoogleLogin
+              clientId={clientId}    
+              buttonText="Login"
+              onSuccess={onSuccess}
+              onFailure={onFailure}
+              cookiePolicy={'single_host_origin'}
+              isSignedIn={true}
+              render={renderProps => (
+                <CustomGoogleButton onClick={renderProps.onClick} />
+              )}
+            />
             </div>
         </article>
     </section>

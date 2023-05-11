@@ -63,14 +63,14 @@ function App() {
     <>
       {/* <Header /> */}
       <Routes>
-        <Route path='/' element={<Login />} />
+        <Route path='/' element={<Home />} />
         {/* <Route path='/schemas' element={<Home />} /> */}
         <Route path='/blockverse' element={<EditorComp />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
         <Route path='/submitted' element={<Submitted />} />
 
         {/* ***** */}
-        <Route path='/newHome' element={<Home />} />
+        {/* <Route path='/newHome' element={<Home />} /> */}
         <Route path='/logout' element={<Logout />} />
         <Route path='/schema' element={<Schema />} />
       </Routes>
