@@ -168,17 +168,19 @@ const Header = (props) => {
             </button>
           </div>
           <div className='flex'>
+            <Link to="/leaderboard">
               <button className='headBtn flex items-center gap-2 px-5 py-2'>
               <span className='text-xl'>LEADERBOARD</span>
-              <Link to="/leaderboard">
+       
                 <img src={leaderboardIcon} alt="" className='ml-2' />
-              </Link>
+              
             </button>
+            </Link>
           </div>
           {
             disabled ? 
             <div className='flex'>
-              <button className='headBtn flex items-center gap-2 px-5 py-2'>
+              <button className='headBtn cursor-not-allowed flex items-center gap-2 px-5 py-2'>
                 <span className='text-xl text-gray-500'>CHECK</span>
                 <img src={checkIcon} alt="" className='ml-2' />
               </button>
@@ -202,7 +204,7 @@ const Header = (props) => {
                     </button>
                   </div>
                     : <div disabled className='flex'>
-                    <button className='headBtn flex items-center gap-2 px-5 py-2'>
+                    <button className='headBtn flex cursor-not-allowed  items-center gap-2 px-5 py-2'>
                     <span className='text-xl text-gray-500'>SUBMIT</span>
                       <img src={submitIcon} alt="" className='ml-2' />
                     </button>
