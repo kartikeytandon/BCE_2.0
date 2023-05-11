@@ -4,7 +4,6 @@
     mix-blend-mode: normal;
     border: 2px solid #2E003A;
     backdrop-filter: blur(8.5px);
-
     box-shadow: 0 0 120px rgb(143, 51, 121, 0.8);
 }
 
@@ -31,5 +30,6 @@ button {
     background-size: cover;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    height: 100vh;
+    min-height: 100vh;
+    background-position: center;  
 }
