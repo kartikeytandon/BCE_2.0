@@ -5,11 +5,9 @@ import './Schema.css'
 
 const Schema = () => {
   return (
-    <section>
+    <section className='schemaSection'>
         <Head />
         <article className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32'>
-            <Schema1 />
-            <Schema1 />
             <Schema1 />
         </article>
     </section>

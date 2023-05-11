@@ -3,13 +3,13 @@ import Header from './components/Header'
 import html2canvas from 'html2canvas';
 import { Route, Routes } from 'react-router-dom';
 import Leaderboard from './components/Leaderboard';
-import EditorComp from './components/EditorComp';
+import EditorComp from './components/EditorComp/EditorComp';
 import Login from './components/Login';
 // import Home from './components/home';
 import { gapi } from 'gapi-script';
 import Submitted from './components/Submitted';
 
-import Home from './Pages/Home';
+import Home from './Pages/Home/Home';
 import Logout from './components/Logout';
 import Schema from './Pages/Schema/Schema';
 

@@ -3,24 +3,47 @@ import Modal from 'react-modal';
 import { Link, Navigate } from "react-router-dom";
 import Leaderboard from './Leaderboard';
 import Logout from './Logout';
-import EditorComp from './EditorComp';
+import EditorComp from './EditorComp/EditorComp';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+// import blockverseLogo from '../../public/assets/blockverseLogo.png'
+// import headerBg from '../../public/assets/HeaderBg.png'
+
 
 const Header = (props) => {
+  const blockverseLogo = "/assets/blockverseLogo.png"
+  const scoreBg = "/assets/ScoreBg.png"
+  const taskIcon = "/assets/TaskIcon.png"
+  const checkIcon = "/assets/CheckIcon.png"
+  const leaderboardIcon = "/assets/LeaderboardIcon.png"
+  const submitIcon = "/assets/SubmitIcon.png"
+  const schema = "/assets/schemaSample.png"
 
-  // Image Import
-  const brlLogo = "/assets/brllogo.png"
-  const schema = "/assets/randomSchema.png"
   const accessToken = Cookies.get('accessToken');
 
   const [isCheck, setIsCheck] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [submitted, setSubmitted] = useState(false)
+  const [disabled, setDisabled] = useState(false);
   const [currScore, setCurrScore] = useState(() => {
   const score = localStorage.getItem('currScore')
   return score ? Number(score) : 0
 });
+
+  let timeLeft = 20;
+
+  const checkDisabled = () => {
+    const intervalId = setInterval(() => {
+      timeLeft--;
+      console.log(`Time left: ${timeLeft}s`);
+  
+      if (timeLeft === 0) {
+        clearInterval(intervalId)
+        console.log('Timer ended!')
+        setDisabled(false)
+      }
+    }, 1000);
+  }
 
   useEffect(() => {
     localStorage.setItem('currScore', currScore);
@@ -42,14 +65,21 @@ const Header = (props) => {
       right: 'auto',
       bottom: 'auto',
       marginRight: '-50%',
-      transform: 'translate(-50%, -50%)',
-      width: '90%',
+      width: '80%',
       height: '90%',
+      transform: 'translate(-50%, -50%)',
+      backgroundColor: 'rgba(0, 10, 39, 0.82)',
+      mixBlendMode: 'normal',
+      border: '2px solid #2E003A',
+      backdropFilter: 'blur(8.5px)',
+      borderRadius: '20px',
     },
-  };
+  };      
   
   const handleCheck = () => {
-    setIsCheck(true);
+    setIsCheck(true)
+    setDisabled(true)
+    checkDisabled()
     alert('you can now submit your response!');
   
     // let html_code = `${props.html}`
@@ -98,7 +128,7 @@ const Header = (props) => {
         })
         .catch(error => {
             console.error(error);
-        });
+        });  
   }
 
   if(submitted) {
@@ -110,28 +140,66 @@ const Header = (props) => {
       />
     )
   }
+
+  const finalSubmitCheck = () => {
+    const result = window.confirm("Are you sure you want to submit?")
+    if(result) {
+      finalSubmit()
+    }
+  }
   return (
-    <header className='flex items-center justify-between mx-8'>
-        <img src={brlLogo} alt="" className='w-1/6' />
-        <h1 className='text-4xl font-semibold'>Current Score: {currScore}</h1>
+    <header className='flex items-center justify-between px-6'>
+        <img src={blockverseLogo} alt="" className='w-1/6 p-2' />
+        <div id='score'>
+          <h1 className='text-xl font-semibold'>Current Score: {currScore}</h1>
+        </div>
         <nav className='flex gap-4'>
-            <button onClick={openModal} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-                Task
+          <div className='flex'>
+            <button onClick={openModal} className='headBtn flex items-center gap-2 px-5 py-2'>
+              <span className='text-xl'>TASK</span>
+              <img src={taskIcon} alt="" className='ml-2' />
             </button>
-            <button onClick={handleCheck} className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-                Check
+          </div>
+          <div className='flex'>
+              <button className='headBtn flex items-center gap-2 px-5 py-2'>
+              <span className='text-xl'>LEADERBOARD</span>
+              <Link to="/leaderboard">
+                <img src={leaderboardIcon} alt="" className='ml-2' />
+              </Link>
             </button>
-            <Link to="/leaderboard" className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'>
-                Leaderboard
-            </Link>
-            {/* <button className=' bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'> */}
-              <Logout />
-            {/* </button> */}
+          </div>
+          {
+            disabled ? 
+            <div className='flex'>
+              <button className='headBtn flex items-center gap-2 px-5 py-2'>
+                <span className='text-xl text-gray-500'>CHECK</span>
+                <img src={checkIcon} alt="" className='ml-2' />
+              </button>
+            </div> : 
+            <div className='flex'>
+              <button onClick={() => {
+                handleCheck()
+              }} className='headBtn flex items-center gap-2 px-5 py-2'>
+                <span className='text-xl'>CHECK</span>
+                <img src={checkIcon} alt="" className='ml-2' />
+              </button>
+            </div>
+          }
 
             {
                 isCheck 
-                    ? <button type="submit" className='bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded' onClick={finalSubmit}>Final Submit</button>
-                    : <button disabled className='bg-gray-500 text-gray-400 font-bold py-2 px-4 rounded cursor-not-allowed'>Final Submit</button>
+                    ? <div className='flex'>
+                    <button onClick={finalSubmitCheck} className='headBtn flex items-center gap-2 px-5 py-2'>
+                      <span className='text-xl'>SUBMIT</span>
+                      <img src={submitIcon} alt="" className='ml-2' />
+                    </button>
+                  </div>
+                    : <div disabled className='flex'>
+                    <button className='headBtn flex items-center gap-2 px-5 py-2'>
+                    <span className='text-xl text-gray-500'>SUBMIT</span>
+                      <img src={submitIcon} alt="" className='ml-2' />
+                    </button>
+                  </div>
             }
         </nav>
         <Modal
@@ -141,8 +209,16 @@ const Header = (props) => {
         style={customStyles}
         contentLabel="Example Modal"
         >
-            <button onClick={closeModal} className='bg-red-500 text-white font-bold py-2 px-4 rounded uppercase hovfer:bg-red-600'>close</button>
-            <img src={schema} alt="" />
+            <div className='flex flex-col justify-center items-center gap-4'>
+                <div className='flex items-center gap-4'>
+                  <button className='tracking-wide py-2 px-4' onClick={closeModal}>CLOSE</button>
+                  <button className='tracking-wide py-2 px-4' onClick={closeModal}>ASSETS</button>
+                </div>
+                <h1 className='text-4xl tracking-wider text-center'>PREVIEW</h1>
+            </div>
+            <div className='flex justify-center my-8'>
+              <img src={schema} alt="" className='w-3/4' />
+            </div>
         </Modal>
     </header>
   )
