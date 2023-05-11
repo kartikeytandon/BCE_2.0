@@ -14,30 +14,12 @@ import Submitted from './components/Submitted';
 import Logout from './components/Logout';
 import Schema from './Pages/Schema/Schema';
 import Home from './Pages/Home/Home';
+import Protected from './Pages/Protected';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
 function App() {
-  // const iframeRef = useRef(null);
   const [screenshot, setScreenshot] = useState(null);
-  // const [accessToken, setAccessToken] = useState('');
-
-  // useEffect(() => {
-  //   function start() {
-  //     gapi.client.init({
-  //       clientId: clientId,
-  //       scope: ""
-  //     }).then(() => {
-  //       const user = gapi.auth2.getAuthInstance().currentUser.get();
-  //       if (user.isSignedIn()) {
-  //         setAccessToken(user.getAuthResponse().access_token);
-  //       }
-  //     });
-  //   }
-
-  //   gapi.load('client:auth2', start);
-  //   console.log(accessToken);
-  // }, []);
 
   const [accessToken, setAccessToken] = useState('');
 
@@ -61,20 +43,14 @@ function App() {
 
   return (
     <>
-      {/* <Header /> */}
       <Routes>
         <Route path='/' element={<Home />} />
-        {/* <Route path='/schemas' element={<Home />} /> */}
-        <Route path='/blockverse' element={<EditorComp />} />
-        <Route path='/leaderboard' element={<Leaderboard />} />
-        <Route path='/submitted' element={<Submitted />} />
-
-        {/* ***** */}
-        {/* <Route path='/newHome' element={<Home />} /> */}
+        <Route path='/schema' element={<Protected><Schema /></Protected>} />
+        <Route path='/blockverse' element={<Protected><EditorComp /></Protected>} />
+        <Route path='/leaderboard' element={<Protected><Leaderboard /></Protected>} />
+        <Route path='/submitted' element={<Protected><Submitted /></Protected>} />
         <Route path='/logout' element={<Logout />} />
-        <Route path='/schema' element={<Schema />} />
       </Routes>
-
     </>
   )
 }
@@ -83,3 +59,8 @@ export default App;
 
 // Client_ID: 908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com
 // Client_Secret: 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
+
+{/* <Route path='/schema' element={<Schema />} /> */}
+{/* <Route path='/blockverse' element={<EditorComp />} />
+<Route path='/leaderboard' element={<Leaderboard />} />
+<Route path='/submitted' element={<Submitted />} /> */}

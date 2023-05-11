@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { Navigate, useLocation } from 'react-router-dom';
 import axios from 'axios';
@@ -38,6 +38,9 @@ const Login = () => {
   const onFailure = (res) => {
     console.log("Login failed", res);
   }
+  useEffect(() => {
+    localStorage.setItem('loggedIn', loggedIn)
+  }, [loggedIn]);
 
   if (loggedIn) {
     return (
