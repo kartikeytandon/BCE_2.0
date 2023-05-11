@@ -3,7 +3,7 @@ import './Head.css'
 import Modal from 'react-modal';
 
 const Head = () => {
-  const blockverseLogo = "/assets/blockverseLogo.png"
+  const blockverseLogo = "/assets/blockverse_logo.svg"
   return (
     <article className='flex flex-col items-center justify-center py-10 gap-4'>
       <img src={blockverseLogo} className='w-1/3 sm:w-2/6' alt="" />
