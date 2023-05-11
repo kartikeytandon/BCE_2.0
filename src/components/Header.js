@@ -176,12 +176,15 @@ const Header = (props) => {
         style={customStyles}
         contentLabel="Example Modal"
         >
-            <div className='flex flex-col justify-center items-center gap-4'>
+            <div className='flex justify-between items-center'>
+                <div>
+                  <h1 className='text-4xl tracking-wider text-center self-center'>PREVIEW</h1>
+                </div>
+
                 <div className='flex items-center gap-4'>
                   <button className='tracking-wide py-2 px-4' onClick={closeModal}>CLOSE</button>
                   <button className='tracking-wide py-2 px-4' onClick={closeModal}>ASSETS</button>
                 </div>
-                <h1 className='text-4xl tracking-wider text-center'>PREVIEW</h1>
             </div>
             <div className='flex justify-center my-8'>
               <img src={schema} alt="" className='w-3/4' />
