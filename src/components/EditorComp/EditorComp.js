@@ -49,6 +49,7 @@ const EditorComp = () => {
       </div>
       <div className="pane">
         <iframe
+          className='bg-white'
           srcDoc={srcDoc}
           title="output"
           sandbox="allow-scripts"
