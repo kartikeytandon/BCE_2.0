@@ -6,7 +6,7 @@ import Header from './Header';
 
 const Leaderboard = () => {
   return (
-    <section>
+    <section className='leaderboardClass'>
       {/* <h1 className='underline text-4xl font-semibold text-center pt-2'>Phase-1 Leaderboard</h1> */}
       <Header />
       <LeadHead />

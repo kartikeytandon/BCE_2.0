@@ -26,10 +26,26 @@ const Header = (props) => {
   const [isCheck, setIsCheck] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [submitted, setSubmitted] = useState(false)
+  const [disabled, setDisabled] = useState(false);
   const [currScore, setCurrScore] = useState(() => {
   const score = localStorage.getItem('currScore')
   return score ? Number(score) : 0
 });
+
+  let timeLeft = 20;
+
+  const checkDisabled = () => {
+    const intervalId = setInterval(() => {
+      timeLeft--;
+      console.log(`Time left: ${timeLeft}s`);
+  
+      if (timeLeft === 0) {
+        clearInterval(intervalId)
+        console.log('Timer ended!')
+        setDisabled(false)
+      }
+    }, 1000);
+  }
 
   useEffect(() => {
     localStorage.setItem('currScore', currScore);
@@ -68,7 +84,9 @@ const Header = (props) => {
   };      
   
   const handleCheck = () => {
-    setIsCheck(true);
+    setIsCheck(true)
+    setDisabled(true)
+    checkDisabled()
     alert('you can now submit your response!');
   
     // let html_code = `${props.html}`
@@ -129,6 +147,13 @@ const Header = (props) => {
       />
     )
   }
+
+  const finalSubmitCheck = () => {
+    const result = window.confirm("Are you sure you want to submit?")
+    if(result) {
+      finalSubmit()
+    }
+  }
   return (
     <header className='flex items-center justify-between px-6'>
         <img src={blockverseLogo} alt="" className='w-1/6 p-2' />
@@ -143,12 +168,6 @@ const Header = (props) => {
             </button>
           </div>
           <div className='flex'>
-            <button onClick={handleCheck} className='headBtn flex items-center gap-2 px-5 py-2'>
-              <span className='text-xl'>CHECK</span>
-              <img src={checkIcon} alt="" className='ml-2' />
-            </button>
-          </div>
-          <div className='flex'>
               <button className='headBtn flex items-center gap-2 px-5 py-2'>
               <span className='text-xl'>LEADERBOARD</span>
               <Link to="/leaderboard">
@@ -156,21 +175,35 @@ const Header = (props) => {
               </Link>
             </button>
           </div>
-            {/* <button className=' bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded'> */}
-              {/* <Logout /> */}
-            {/* </button> */}
+          {
+            disabled ? 
+            <div className='flex'>
+              <button className='headBtn flex items-center gap-2 px-5 py-2'>
+                <span className='text-xl text-gray-500'>CHECK</span>
+                <img src={checkIcon} alt="" className='ml-2' />
+              </button>
+            </div> : 
+            <div className='flex'>
+              <button onClick={() => {
+                handleCheck()
+              }} className='headBtn flex items-center gap-2 px-5 py-2'>
+                <span className='text-xl'>CHECK</span>
+                <img src={checkIcon} alt="" className='ml-2' />
+              </button>
+            </div>
+          }
 
             {
                 isCheck 
                     ? <div className='flex'>
-                    <button onClick={finalSubmit} className='headBtn flex items-center gap-2 px-5 py-2'>
+                    <button onClick={finalSubmitCheck} className='headBtn flex items-center gap-2 px-5 py-2'>
                       <span className='text-xl'>SUBMIT</span>
                       <img src={submitIcon} alt="" className='ml-2' />
                     </button>
                   </div>
                     : <div disabled className='flex'>
-                    <button onClick={handleCheck} className='headBtn flex items-center gap-2 px-5 py-2'>
-                    <span className='text-xl'>SUBMIT</span>
+                    <button className='headBtn flex items-center gap-2 px-5 py-2'>
+                    <span className='text-xl text-gray-500'>SUBMIT</span>
                       <img src={submitIcon} alt="" className='ml-2' />
                     </button>
                   </div>
