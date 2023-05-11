@@ -7,12 +7,13 @@ import EditorComp from './EditorComp/EditorComp';
 import axios from 'axios';
 import Cookies from 'js-cookie';
 import Assets from './Assets';
+import LogoTimer from './LogoTimer';
 // import blockverseLogo from '../../public/assets/blockverseLogo.png'
 // import headerBg from '../../public/assets/HeaderBg.png'
 
 
 const Header = (props) => {
-  const blockverseLogo = "/assets/blockverseLogo.png"
+  
   const scoreBg = "/assets/ScoreBg.png"
   const taskIcon = "/assets/TaskIcon.png"
   const checkIcon = "/assets/CheckIcon.png"
@@ -154,9 +155,13 @@ const Header = (props) => {
       finalSubmit()
     }
   }
+
+
   return (
-    <header className='flex items-center justify-between px-6'>
-        <img src={blockverseLogo} alt="" className='w-1/6 p-2' />
+    <header className='flex items-center justify-between px-6 h-20'>
+        {/* Logo with timer that appears as we hover it */}
+        <LogoTimer />
+
         <div id='score'>
           <h1 className='text-xl font-semibold'>Current Score: {currScore}</h1>
         </div>
