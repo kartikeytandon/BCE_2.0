@@ -1,5 +1,5 @@
 import React from 'react'
-import Head from '../components/Head/Head'
+import Head from '../../components/Head/Head'
 import Login from '../../components/Login'
 // import "./Home.css"
 // import brlLogo from '/assets/brlLogo2.png'
