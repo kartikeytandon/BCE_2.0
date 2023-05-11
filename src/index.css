@@ -27,11 +27,6 @@ body {
   padding: 0;
   box-sizing: border-box;
   scroll-behavior: smooth;
-  background-image: url('../public/assets/bg.png');
-  background-size: cover;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-
 }
 
 .top-pane {
@@ -105,23 +100,8 @@ body {
   background-attachment: fixed;
   background-repeat: no-repeat;
   height: 100vh;
+  font-family: 'Lato', sans-serif;
 }
-
-/* .blockverse_logo {
-  animation: hue 6s infinite ease-in-out;
-}
-
-@keyframes hue {
-
-  0%,
-  100% {
-    filter: hue-rotate(5deg) saturate(0);
-  }
-
-  50% {
-    filter: hue-rotate(-5deg) saturate(50);
-  }
-} */
 
 /* Leaderboard */
 .leaderboardClass {
