@@ -1,19 +1,16 @@
 import React, { useState } from 'react'
 import './Head.css'
-<<<<<<< HEAD
 // import blockverseLogo from '../../assets/blockverseLogo.png'
-=======
->>>>>>> ab717a60f17255c3eec41205574ab76975641810
 import Modal from 'react-modal';
 
 const Head = () => {
-  const blockverseLogo = "/assets/blockverseLogo.png"
+  const blockverseLogo = "/assets/blockverse_logo.svg"
   return (
-    <article className='flex flex-col items-center justify-center py-10 gap-4'>
-      <img src={blockverseLogo} className='w-1/3 sm:w-2/5' alt="" />
-      <div className='flex flex-col items-center justify-center text-white gap-4 headDiv'>
-          <h1 className='text-4xl sm:text-5xl md:text-4xl text-center'>PHASE I - PROJECT BUILDING</h1>
-          <h1 className='text-3xl sm:text-4xl md:text-3xl tracking-widest'>&lt;WEB_DEV /&gt;</h1>
+    <article className='flex flex-col items-center justify-center'>
+      <img src={blockverseLogo} className='w-[80%] blockverse_logo' alt="" />
+      <div className='flex flex-col items-center justify-center text-white headDiv'>
+          <h1 className='text-2xl text-center'>PHASE I - PROJECT BUILDING</h1>
+          <h1 className='text-lg tracking-widest'>&lt;WEB_DEV /&gt;</h1>
       </div>
     </article>
 
