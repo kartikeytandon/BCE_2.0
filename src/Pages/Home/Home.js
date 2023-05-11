@@ -32,7 +32,7 @@ const Home = () => {
               <img src={brlCube} alt="brl_logo_cube" className='aspect-auto w-1/6' />
               <Login />
             </div>
-        </article>
+        </article>  
 
         {/* Footer Logo */}
         <img src={brlLogo} alt="brl_logo" className='w-[8rem] aspect-auto invert' />
