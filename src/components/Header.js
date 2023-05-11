@@ -6,6 +6,7 @@ import Logout from './Logout';
 import EditorComp from './EditorComp/EditorComp';
 import axios from 'axios';
 import Cookies from 'js-cookie';
+import Assets from './Assets';
 // import blockverseLogo from '../../public/assets/blockverseLogo.png'
 // import headerBg from '../../public/assets/HeaderBg.png'
 
@@ -21,6 +22,7 @@ const Header = (props) => {
 
   const accessToken = Cookies.get('accessToken');
 
+  const [ isAssets, setIsAssets ] = useState(false)
   const [isCheck, setIsCheck] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [submitted, setSubmitted] = useState(false)
@@ -40,6 +42,11 @@ const Header = (props) => {
   }
   function closeModal() {
     setIsOpen(false);
+  }
+
+  const handleAsset = () => {
+    setIsAssets(!isAssets)
+    console.log(isAssets)
   }
 
   const customStyles = {
@@ -178,16 +185,23 @@ const Header = (props) => {
         >
             <div className='flex justify-between items-center'>
                 <div>
-                  <h1 className='text-4xl tracking-wider text-center self-center'>PREVIEW</h1>
+                  <h1 className='text-4xl tracking-wider text-center self-center'>{ !isAssets ? 'PREVIEW' : 'ASSETS' }</h1>
                 </div>
 
                 <div className='flex items-center gap-4'>
                   <button className='tracking-wide py-2 px-4' onClick={closeModal}>CLOSE</button>
-                  <button className='tracking-wide py-2 px-4' onClick={closeModal}>ASSETS</button>
+                  <button className='tracking-wide py-2 px-4' onClick={handleAsset}>
+                    { isAssets ? 'PREVIEW' : 'ASSETS' }
+                  </button>
+                  
                 </div>
             </div>
             <div className='flex justify-center my-8'>
-              <img src={schema} alt="" className='w-3/4' />
+              {
+                isAssets ?
+                  <Assets /> : 
+                <img src={schema} alt="" className='w-3/4' />
+              }
             </div>
         </Modal>
     </header>

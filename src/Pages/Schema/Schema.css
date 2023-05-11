@@ -4,22 +4,28 @@
     mix-blend-mode: normal;
     border: 2px solid #2E003A;
     backdrop-filter: blur(8.5px);
+
+    box-shadow: 0 0 120px rgb(143, 51, 121, 0.8);
 }
+
 h1 {
     color: #F3C4CD;
 }
+
 button {
     background: #4B3B89;
     box-shadow: inset 0px 4px 4px rgba(0, 0, 0, 0.25);
     border-radius: 8px;
     color: #F3C4CD;
 }
+
 #warning {
     color: #FC8181;
     background: rgba(112, 89, 205, 0.67);
     mix-blend-mode: luminosity;
     border-radius: 10px;
 }
+
 .schemaSection {
     background-image: url('../../../public/assets/bg.png');
     background-size: cover;
