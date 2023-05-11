@@ -9,9 +9,11 @@ import Login from './components/Login';
 import { gapi } from 'gapi-script';
 import Submitted from './components/Submitted';
 
-import Home from './Pages/Home/Home';
+// import Home from './Pages/Home/Home';
+// import { Home } from "./Pages/Home"
 import Logout from './components/Logout';
 import Schema from './Pages/Schema/Schema';
+import Home from './Pages/Home/Home';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
@@ -44,7 +46,7 @@ function App() {
       gapi.client.init({
         clientId: clientId,
         scope: "",
-        hosted_domain: 'akgec.ac.in'
+        // hosted_domain: 'akgec.ac.in'
       }).then(() => {
         const user = gapi.auth2.getAuthInstance().currentUser.get();
         if (user.isSignedIn()) {
@@ -62,7 +64,7 @@ function App() {
       {/* <Header /> */}
       <Routes>
         <Route path='/' element={<Login />} />
-        <Route path='/schemas' element={<Home />} />
+        {/* <Route path='/schemas' element={<Home />} /> */}
         <Route path='/blockverse' element={<EditorComp />} />
         <Route path='/leaderboard' element={<Leaderboard />} />
         <Route path='/submitted' element={<Submitted />} />
