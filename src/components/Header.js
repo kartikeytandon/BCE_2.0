@@ -79,7 +79,6 @@ const Header = (props) => {
       backgroundColor: 'rgba(0, 10, 39, 0.82)',
       mixBlendMode: 'normal',
       border: '2px solid #2E003A',
-      backdropFilter: 'blur(8.5px)',
       borderRadius: '20px',
     },
   };      
@@ -222,6 +221,7 @@ const Header = (props) => {
         onRequestClose={closeModal}
         style={customStyles}
         contentLabel="Example Modal"
+        overlayClassName="Overlay"
         >
             <div className='flex justify-between items-center'>
                 <div>
