@@ -11,11 +11,11 @@ const Home = () => {
   return (
     <section className='homeSection flex flex-col justify-between pb-5 items-center'>
         <Head />
-        <article className='flex items-center justify-center w-[80vw] loginDiv p-4 rounded-lg'>
+        <article className='flex items-center justify-center w-[70vw] loginDiv p-4 rounded-lg'>
           {/* INSTRUCTIONS ON LOGIN PAGE */}
             <div className='w-2/3 border border-l-0 border-t-0 border-b-0 border-r-2 border-opacity-50 border-r-secondary pr-10'>
               <h3 className='text-secondary font-lato uppercase text-2xl text-center '>instructions</h3>
-              <ul className='text-secondary text-sm text-justify px-4 py-3 list-disc grid gap-1'>
+              <ul className='text-secondary text-sm text-justify px-12 py-3 list-disc grid gap-1'>
                 <li>You will be provided with a set of schemas, of which you have to choose one and develop it.</li>
                 <li>You have to develop the UI entirely on this platform.</li>
                 <li>You can not change the choice of your schema.</li>
