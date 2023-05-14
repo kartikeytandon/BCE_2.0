@@ -97,7 +97,7 @@ const Header = (props) => {
     console.log(css_code);
 
     
-    axios.post('http://43.206.130.198/score/', { html_code, css_code }, {
+    axios.post('https://blockverseapi.brlakgec.com/score/', { html_code, css_code }, {
       headers: {
         Authorization: `Token ${accessToken}`
       }
@@ -125,7 +125,7 @@ const Header = (props) => {
     let css_code = props.css
     let submitted = true
     setSubmitted(true)
-    axios.post('http://43.206.130.198/submit/', { html_code, css_code, submitted }, {
+    axios.post('https://blockverseapi.brlakgec.com/submit/', { html_code, css_code, submitted }, {
       headers: {
         Authorization: `Token ${accessToken}`
       }

@@ -16,7 +16,7 @@ const Schema1 = () => {
     console.log(`Schema ${id} clicked`);
     console.log(accessToken);
     let schema = `${id}`
-    axios.post('http://43.206.130.198/schema_selection/', { schema }, {
+    axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema }, {
       headers: {
         Authorization: `Token ${accessToken}`
       }

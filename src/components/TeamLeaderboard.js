@@ -9,7 +9,7 @@ const TeamLeaderboard = () => {
   const sortedTeams = [...teamDetails].sort((a, b) => b.score - a.score);
 
   useEffect(() => {
-    axios.get('http://43.206.130.198/leaderboard/', {
+    axios.get('https://blockverseapi.brlakgec.com/leaderboard/', {
       headers: {
         Authorization: `Token ${accessToken}`
       }

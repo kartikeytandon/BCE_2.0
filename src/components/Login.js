@@ -16,7 +16,7 @@ const Login = () => {
     console.log("Login success", res.profileObj);
     email = res.profileObj.email
 
-    axios.post('http://43.206.130.198/login/', { email })
+    axios.post('https://blockverseapi.brlakgec.com/login/', { email })
         .then(response => {
             console.log(response.data);
             console.log(response.data.token);
