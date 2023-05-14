@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Modal from 'react-modal';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
@@ -48,36 +48,46 @@ const Schema1 = () => {
         },
       };      
 
-  const [modalIsOpen, setIsOpen] = useState(false)
   const [start, setStart] = useState(false)
 
-  function openModal() {
-    setIsOpen(true);
+  const [schemaModal, setSchemaModal] = useState(schemas.reduce((obj, schema) => {
+    obj[schema.id] = false;
+    return obj;
+  }, {}));
+
+  function openModal(id) {
+    setSchemaModal({...schemaModal, [id]: true});
   }
-  function closeModal() {
-    setIsOpen(false);
-  }  
-  function startCode() {
+
+  function closeModal(id) {
+    setSchemaModal({...schemaModal, [id]: false});
+  }
+
+  function startCode(id) {
     setStart(true)
+    handleClick(id);
   }
+
   if(start) {
     return (
         <Navigate to='/blockverse' />
     )
   }
+
   return (
     <div className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32'>
       {schemas.map(schema => (
-        <div className='schema w-fit flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-lg' key={schema.id}>
+        <div key={schema.id}>
+        <div className='schema w-fit flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-lg'>
           <h1 className='text-xl tracking-wide'>{schema.name}</h1>
           <img src={schemaSample} alt="" className='w-52' />
-          <button className='tracking-wide py-2 px-4' onClick={openModal}>SELECT</button>
+          <button className='tracking-wide py-2 px-4' onClick={() => openModal(schema.id)}>SELECT</button>
           <Modal
-            isOpen={modalIsOpen}
-            onRequestClose={closeModal}
+            isOpen={schemaModal[schema.id]}
+            onRequestClose={() => closeModal(schema.id)}
             style={customStyles}
             contentLabel="Example Modal"
-          >   
+          > 
             <div>
               <h1 className='text-3xl tracking-wide text-center'>{schema.name}</h1>
               <div id='warning'>
@@ -87,14 +97,15 @@ const Schema1 = () => {
                 <img src={schemaSample} alt="" className='w-2/4' />
               </div>
               <div className='flex items-center justify-center gap-8'>
-                <button className='tracking-wide py-2 px-4' onClick={closeModal}>RETURN</button>
+                <button className='tracking-wide py-2 px-4' onClick={() => closeModal(schema.id)}>RETURN</button>
                 <button className='tracking-wide py-2 px-4' onClick={() => {
-                  startCode();
-                  handleClick(schema.id);
+                  startCode(schema.id);
+                  // handleClick(schema.id);
                 }}>START</button>
               </div>
             </div>
           </Modal>
+        </div>
         </div>
       ))}
     </div>

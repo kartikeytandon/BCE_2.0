@@ -38,7 +38,7 @@ const Header = (props) => {
   const checkDisabled = () => {
     const intervalId = setInterval(() => {
       timeLeft--;
-      console.log(`Time left: ${timeLeft}s`);
+      // console.log(`Time left: ${timeLeft}s`);
   
       if (timeLeft === 0) {
         clearInterval(intervalId)
@@ -91,7 +91,9 @@ const Header = (props) => {
   
     // let html_code = `${props.html}`
     let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
-    let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "")
+    // let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "")
+    // let html_code = props.html.replace(/[\s]+/g, "");
+    let css_code = props.css.replace(/[\s]+/g, "");
 
     console.log(html_code);
     console.log(css_code);
