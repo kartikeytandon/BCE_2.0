@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 
 const LogoTimer = () => {
-    const blockverseLogo = "/assets/blockverseLogo.png"
+    const blockverseLogo = "/assets/blockverselogo.webp"
   const initialTime = {
     hours: 2,
     minutes: 0,

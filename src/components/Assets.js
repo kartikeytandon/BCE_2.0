@@ -2,32 +2,32 @@ import React from 'react';
 
 const AssetList = [
   {
-    image: "/assets/schemaSample.png",
+    image: "/assets/schemasample.webp",
     name: "background image",
     url: "https://i.imgur.com/HVHq3Yz.jpeg"
   },
   {
-    image: "/assets/schemaSample.png",
+    image: "/assets/schemasample.webp",
     name: "icons",
     url: "https://i.imgur.com/HVHq3Yz.jpeg"
   },
   {
-    image: "/assets/schemaSample.png",
+    image: "/assets/schemasample.webp",
     name: "text color",
     url: "#17131A"
   },
   {
-    image: "/assets/schemaSample.png",
+    image: "/assets/schemasample.webp",
     name: "background color",
     url: "#2AF331"
   },
   {
-    image: "/assets/schemaSample.png",
+    image: "/assets/schemasample.webp",
     name: "primary font",
     url: "Inter"
   },
   {
-    image: "/assets/schemaSample.png",
+    image: "/assets/schemasample.webp",
     name: "secondary font",
     url: "lato"
   },

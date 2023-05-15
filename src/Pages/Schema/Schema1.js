@@ -29,7 +29,7 @@ const Schema1 = () => {
         });
   };
 
-  const schemaSample = "/assets/schemaSample.png"
+  const schemaSample = "/assets/schemasample.webp"
     const customStyles = {
         content: {
           top: '50%',

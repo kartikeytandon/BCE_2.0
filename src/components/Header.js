@@ -14,11 +14,11 @@ import Base64 from 'base-64'
 const Header = (props) => {
   
   const scoreBg = "/assets/ScoreBg.png"
-  const taskIcon = "/assets/TaskIcon.png"
-  const checkIcon = "/assets/CheckIcon.png"
-  const leaderboardIcon = "/assets/LeaderboardIcon.png"
-  const submitIcon = "/assets/SubmitIcon.png"
-  const schema = "/assets/schemaSample.png"
+  const taskIcon = "/assets/taskicon.webp"
+  const checkIcon = "/assets/checkicon.webp"
+  const leaderboardIcon = "/assets/leaderboardicon.webp"
+  const submitIcon = "/assets/submiticon.webp"
+  const schema = "/assets/schemasample.webp"
 
   const accessToken = Cookies.get('accessToken');
 
@@ -173,12 +173,6 @@ const Header = (props) => {
     }
   }
 
-  // to clear the stored remaining time when the timer component unmounts
-  useEffect(() => {
-  return () => {
-    localStorage.removeItem('remainingTime');
-  };
-}, []);
 
 
   return (

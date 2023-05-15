@@ -95,7 +95,7 @@ body {
 
 /* Home CSS */
 .homeSection {
-  background-image: url('../public/assets/bg.png');
+  background-image: url('../public/assets/bg.webp');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -106,7 +106,7 @@ body {
 
 /* Leaderboard */
 .leaderboardClass {
-  background-image: url('../public/assets/leaderboardBg.png');
+  background-image: url('../public/assets/leaderboardbg.webp');
   background-size: cover;
   background-attachment: fixed;
   background-repeat: no-repeat;
