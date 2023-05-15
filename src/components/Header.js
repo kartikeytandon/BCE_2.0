@@ -8,9 +8,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Assets from './Assets';
 import LogoTimer from './LogoTimer';
-// import blockverseLogo from '../../public/assets/blockverseLogo.png'
-// import headerBg from '../../public/assets/HeaderBg.png'
-
+// import { encode, decode, Base64 } from 'js-base64';
+import Base64 from 'base-64'
 
 const Header = (props) => {
   
@@ -90,10 +89,20 @@ const Header = (props) => {
     alert('you can now submit your response!');
   
     // let html_code = `${props.html}`
-    let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
-    // let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "")
-    // let html_code = props.html.replace(/[\s]+/g, "");
-    let css_code = props.css.replace(/[\s]+/g, "");
+    // let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
+    // let css_code = props.css.replace(/[\s]+/g, "");
+
+    let html = props.html
+    let css = props.css
+
+    console.log(html);
+    console.log(css);
+
+    let html_utf8 = unescape(encodeURIComponent(html));
+    let css_utf8 = unescape(encodeURIComponent(css));
+
+    let html_code = Base64.encode(html_utf8);
+    let css_code = Base64.encode(css_utf8);  
 
     console.log(html_code);
     console.log(css_code);
@@ -119,6 +128,13 @@ const Header = (props) => {
     // console.log(html_code);
     // console.log(css_code);
   }
+
+  // to clear the stored remaining time when the timer component unmounts
+  useEffect(() => {
+    return () => {
+      localStorage.removeItem('remainingTime');
+    };
+  }, []);
 
   const finalSubmit = () => {
     console.log(props.html)
