@@ -32,7 +32,7 @@ const LogoTimer = () => {
           };
 
           localStorage.setItem('remainingTime', JSON.stringify(newTime));
-
+          
           return newTime;
         });
       }, 1000);

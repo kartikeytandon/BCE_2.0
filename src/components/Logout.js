@@ -10,9 +10,12 @@ const Logout = () => {
   const onSuccess = () => {
     console.log("Logged Out");
     setLoggedOut(true)
+    localStorage.removeItem('remainingTime');
   }
 
     if (loggedOut) {
+      
+    localStorage.removeItem('remainingTime');
         return <Navigate to="/" />;
     }
   return (
