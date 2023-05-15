@@ -157,6 +157,13 @@ const Header = (props) => {
     }
   }
 
+  // to clear the stored remaining time when the timer component unmounts
+  useEffect(() => {
+  return () => {
+    localStorage.removeItem('remainingTime');
+  };
+}, []);
+
 
   return (
     <header className='flex items-center justify-between px-6 h-20'>
