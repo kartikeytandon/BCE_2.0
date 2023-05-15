@@ -16,10 +16,10 @@ const LeadHead = () => {
           <table class="table-auto w-full border-collapse leadTable">
               <thead>
                   <tr class="text-left text-white">
-                      <th class="px-4 py-2 text-2xl">Position</th>
-                      <th class="px-4 py-2 text-2xl">Team Name</th>
-                      <th class="px-4 py-2 text-2xl">Current Accuracy</th>
-                      <th class="px-4 py-2 text-2xl">Time Taken</th>
+                      <th class="px-4 py-2 text-2xl text-center">Position</th>
+                      <th class="px-4 py-2 text-2xl text-center">Team Name</th>
+                      <th class="px-4 py-2 text-2xl text-center">Current Accuracy</th>
+                      <th class="px-4 py-2 text-2xl text-center">Time Taken</th>
                   </tr>     
               </thead>
               <TeamLeaderboard />

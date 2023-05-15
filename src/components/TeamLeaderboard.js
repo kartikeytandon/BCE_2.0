@@ -30,10 +30,10 @@ const TeamLeaderboard = () => {
           sortedTeams.map((team, index) => {
             return (
               <tr className='bg-gray-100 m-4' key={index}>
-                <td className="px-4 py-2 text-xl">{index+1}</td>
-                <td className="px-4 py-2 text-xl">{team.team_name}</td>
-                <td className="px-4 py-2 text-xl">{team.score}</td>
-                <td className="px-4 py-2 text-xl">1:22:22</td>
+                <td className="px-4 py-2 text-xl text-center">{index+1}</td>
+                <td className="px-4 py-2 text-xl text-center">{team.team_name}</td>
+                <td className="px-4 py-2 text-xl text-center">{team.score}</td>
+                <td className="px-4 py-2 text-xl text-center">1:22:22</td>
               </tr>
             )
           })
