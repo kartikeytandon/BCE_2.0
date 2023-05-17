@@ -12,10 +12,7 @@ const EditorComp = () => {
     useEffect(() => {
         const timeout = setTimeout(() => {
           setSrcDoc(
-            `<html>
-              <body>${html}</body>
-              <style>${css}</style>
-            </html>`
+            `<html><body>${html}</body><style>${css}</style></html>`
           );
         }, 250);
       
@@ -31,7 +28,7 @@ const EditorComp = () => {
         <Editor
           language="xml"
           displayName="HTML"
-          value={html}
+          value={html}  
           onChange={setHtml}
         />
         <Editor

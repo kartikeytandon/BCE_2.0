@@ -9,7 +9,7 @@ import Cookies from 'js-cookie';
 import Assets from './Assets';
 import LogoTimer from './LogoTimer';
 // import { encode, decode, Base64 } from 'js-base64';
-import Base64 from 'base-64'
+import Base64, { decode } from 'base-64'
 
 const Header = (props) => {
   
@@ -98,11 +98,16 @@ const Header = (props) => {
     console.log(html);
     console.log(css);
 
-    let html_utf8 = unescape(encodeURIComponent(html));
-    let css_utf8 = unescape(encodeURIComponent(css));
+    // let html_utf8 = decodeURI(encodeURIComponent(html));
+    // let css_utf8 = decodeURI(encodeURIComponent(css));
 
-    let html_code = Base64.encode(html_utf8);
-    let css_code = Base64.encode(css_utf8);  
+    // let html_utf8 = encodeURIComponent(html)
+    // let css_utf8 = encodeURIComponent(css)
+
+    // console.log
+
+    let html_code = Base64.encode(html);
+    let css_code = Base64.encode(css);  
 
     console.log(html_code);
     console.log(css_code);
