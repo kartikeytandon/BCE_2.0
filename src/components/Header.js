@@ -92,11 +92,11 @@ const Header = (props) => {
     // let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
     // let css_code = props.css.replace(/[\s]+/g, "");
 
-    let html = props.html
-    let css = props.css
+    // let html = props.html
+    // let css = props.css
 
-    console.log(html);
-    console.log(css);
+    // console.log(html);
+    // console.log(css);
 
     // let html_utf8 = decodeURI(encodeURIComponent(html));
     // let css_utf8 = decodeURI(encodeURIComponent(css));
@@ -106,15 +106,24 @@ const Header = (props) => {
 
     // console.log
 
+    // Converted in Single line
+    let html = props.html.replace(/(\r\n|\n|\r)/gm, "")
+    let css = props.css.replace(/(\r\n|\n|\r)/gm, "")
+    // let css = props.css.replace(/[\s]+/g, "")  
+
+    console.log(html);
+    console.log(css);
+
+    // Converted the single line code into base64
     let html_code = Base64.encode(html);
-    let css_code = Base64.encode(css);  
+    let css_code = Base64.encode(css);
 
     console.log(html_code);
     console.log(css_code);
 
     
     axios.post('https://blockverseapi.brlakgec.com/score/', { html_code, css_code }, {
-      headers: {
+      headers: {  
         Authorization: `Token ${accessToken}`
       }
     })
