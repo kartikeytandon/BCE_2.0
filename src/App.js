@@ -17,26 +17,45 @@ import Home from './Pages/Home/Home';
 import Protected from './Pages/Protected';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
+const scope = "email profile"
 
 function App() {
   const [screenshot, setScreenshot] = useState(null);
 
   const [accessToken, setAccessToken] = useState('');
 
+  // useEffect(() => {
+  //   function start() {
+  //     gapi.client.init({
+  //       clientId: clientId,
+  //       scope: scope,
+  //     }).then(() => {
+  //       const user = gapi.auth2.getAuthInstance().currentUser.get();
+  //       if (user.isSignedIn()) {
+  //         setAccessToken(user.getAuthResponse().access_token);
+  //         console.log(accessToken);
+  //       }
+  //     });
+  //   }
+
+  //   gapi.load('client:auth2', start);
+  // }, [accessToken]);
+
   useEffect(() => {
     function start() {
       gapi.client.init({
         clientId: clientId,
-        scope: "",
-        // hosted_domain: 'akgec.ac.in'
+        scope: scope,
       }).then(() => {
         const user = gapi.auth2.getAuthInstance().currentUser.get();
         if (user.isSignedIn()) {
-          setAccessToken(user.getAuthResponse().access_token);
+          const token = user.getAuthResponse().access_token;
+          setAccessToken(token);
+          console.log(token);
         }
       });
     }
-
+  
     gapi.load('client:auth2', start);
   }, []);
 

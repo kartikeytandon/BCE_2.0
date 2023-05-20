@@ -10,17 +10,28 @@ const Login = () => {
   const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
     let email;
-    let accessToken
+    // let accessToken
+    let id
+
+    const reload = () => {
+      window.location.reload();
+    }
 
   const onSuccess = (res) => {
-    console.log("Login success", res.profileObj);
+    // if (res.profileObj && res.profileObj.email) {
+    //   console.log("Login success", res.profileObj);
+    // } else {
+    //   const googleCode = res.code
+    //   console.log("Google code", googleCode)
+    // }
     email = res.profileObj.email
+    // id = res.profileObj.googleId
 
     axios.post('https://blockverseapi.brlakgec.com/login/', { email })
         .then(response => {
             console.log(response.data);
             console.log(response.data.token);
-            accessToken =  response.data.token
+            const accessToken =  response.data.token
             // localStorage.setItem('accessToken', accessToken)
             Cookies.set('accessToken', accessToken);
 
@@ -28,16 +39,30 @@ const Login = () => {
               setLoggedIn(false)
               alert("You're not registered for the event. Please check your Login Mail!")
             } else {
-              setLoggedIn(true)
+              setLoggedIn(true) 
             }
         })
         .catch(error => {
             console.error(error);
         });
+        // if (!localStorage.getItem('isLoggedInReloaded')) {
+        //   localStorage.setItem('isLoggedInReloaded', true);
+        //   window.location.reload();
+        // }
   }
   const onFailure = (res) => {
     console.log("Login failed", res);
   }
+
+  // useEffect(() => {
+  //   const isLoggedInReloaded = localStorage.getItem('isLoggedInReloaded');
+  
+  //   if (isLoggedInReloaded) {
+  //     localStorage.removeItem('isLoggedInReloaded');
+  //     setLoggedIn(true);
+  //   }
+  // }, []);
+
   useEffect(() => {
     localStorage.setItem('loggedIn', loggedIn)
   }, [loggedIn]);
@@ -48,7 +73,7 @@ const Login = () => {
         to={{
           pathname: '/schema',
           // state: { accessToken: accessToken } 
-          // state: accessToken
+          // state: accessToken 
         }}
       />
     )
@@ -83,6 +108,7 @@ const Login = () => {
               onSuccess={onSuccess}
               onFailure={onFailure}
               cookiePolicy={'single_host_origin'}
+              // responseType="code"
               isSignedIn={true}
               render={renderProps => (
                 <CustomGoogleButton onClick={renderProps.onClick} />
