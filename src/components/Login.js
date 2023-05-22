@@ -21,13 +21,13 @@ const Login = () => {
     // if (res.profileObj && res.profileObj.email) {
     //   console.log("Login success", res.profileObj);
     // } else {
-    //   const googleCode = res.code
-    //   console.log("Google code", googleCode)
+      const authorization_code = res.code
+      console.log("Google code", authorization_code)
     // }
-    email = res.profileObj.email
+    // email = res.profileObj.email
     // id = res.profileObj.googleId
 
-    axios.post('https://blockverseapi.brlakgec.com/login/', { email })
+    axios.post('https://blockverseapi.brlakgec.com/login/', { authorization_code })
         .then(response => {
             console.log(response.data);
             console.log(response.data.token);
@@ -108,7 +108,7 @@ const Login = () => {
               onSuccess={onSuccess}
               onFailure={onFailure}
               cookiePolicy={'single_host_origin'}
-              // responseType="code"
+              responseType="code"
               isSignedIn={true}
               render={renderProps => (
                 <CustomGoogleButton onClick={renderProps.onClick} />
