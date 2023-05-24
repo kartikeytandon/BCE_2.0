@@ -107,16 +107,16 @@ const Header = (props) => {
     // console.log
 
     // Converted in Single line
-    let html = props.html.replace(/(\r\n|\n|\r)/gm, "")
-    let css = props.css.replace(/(\r\n|\n|\r)/gm, "")
+    let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
+    let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "")
     // let css = props.css.replace(/[\s]+/g, "")  
 
-    console.log(html);
-    console.log(css);
+    console.log(html_code);
+    console.log(css_code);
 
     // Converted the single line code into base64
-    let html_code = Base64.encode(html);
-    let css_code = Base64.encode(css);
+    // let html_code = Base64.encode(html);
+    // let css_code = Base64.encode(css);
 
     console.log(html_code);
     console.log(css_code);
