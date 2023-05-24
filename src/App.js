@@ -19,6 +19,28 @@ import Protected from './Pages/Protected';
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 const scope = "email profile"
 
+// Blocking context menu and prevent opening inspect ----> OFF in DEV Mode 
+// TO BE TURNED ON IN DEPLOYMENT MODE
+
+const preventKeyboardShortcuts = (event) => {
+  if (event.keyCode === 123) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.shiftKey && event.keyCode === 'I'.charCodeAt(0)) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.shiftKey && event.keyCode === 'J'.charCodeAt(0)) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.keyCode === 'U'.charCodeAt(0)) {
+    event.preventDefault();
+  }
+};
+
+const preventRightClick = (event) => {
+  event.preventDefault();
+};
+
 function App() {
   const [screenshot, setScreenshot] = useState(null);
 
@@ -41,6 +63,8 @@ function App() {
   //   gapi.load('client:auth2', start);
   // }, [accessToken]);
 
+  
+
   useEffect(() => {
     function start() {
       gapi.client.init({
@@ -59,6 +83,16 @@ function App() {
     gapi.load('client:auth2', start);
   }, []);
 
+  // Preventing console ----> TO BE TURNED ON IN DEPLOYMENT MODE
+
+    useEffect(() => {
+    document.addEventListener('keydown', preventKeyboardShortcuts, false);
+    document.addEventListener('contextmenu', preventRightClick, false)
+    return () => {
+      document.removeEventListener('keydown', preventKeyboardShortcuts, false);
+      document.removeEventListener('contextmenu', preventRightClick, false)
+    };
+  }, []);
 
   return (
     <>
