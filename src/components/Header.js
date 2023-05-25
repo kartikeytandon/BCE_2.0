@@ -10,6 +10,7 @@ import Assets from './Assets';
 import LogoTimer from './LogoTimer';
 // import { encode, decode, Base64 } from 'js-base64';
 import Base64, { decode } from 'base-64'
+import Loader from './Loader';
 
 const Header = (props) => {
   
@@ -24,6 +25,7 @@ const Header = (props) => {
 
   const [ isAssets, setIsAssets ] = useState(false)
   const [isCheck, setIsCheck] = useState(false)
+  const [ isLoadingAfterCheck, setIsLoadingAfterCheck ] = useState(false)
   const [modalIsOpen, setIsOpen] = React.useState(false);
   const [submitted, setSubmitted] = useState(false)
   const [disabled, setDisabled] = useState(false);
@@ -83,6 +85,7 @@ const Header = (props) => {
   };      
   
   const handleCheck = () => {
+    setIsLoadingAfterCheck(true)
     setIsCheck(true)
     setDisabled(true)
     checkDisabled()
@@ -133,7 +136,7 @@ const Header = (props) => {
       localStorage.setItem('currentScore', cScore)
       // let currentSavedScore = localStorage.getItem('currentScore')
       setCurrScore(localStorage.getItem('currentScore'))
-      
+      setIsLoadingAfterCheck(false)
     })
     .catch(error => {
       console.error(error);
@@ -194,8 +197,9 @@ const Header = (props) => {
         {/* Logo with timer that appears as we hover it */}
         <LogoTimer />
 
-        <div id='score'>
-          <h1 className='text-xl font-semibold'>Current Score: {currScore}</h1>
+        <div id='score' className='flex items-center gap-4'>
+          <h1 className='text-xl font-semibold'>Current Score:</h1>
+          <h1 className='text-xl font-semibold'> {isLoadingAfterCheck ? <Loader /> : currScore} </h1>
         </div>
         <nav className='flex gap-4'>
           <div className='flex'>
@@ -247,6 +251,7 @@ const Header = (props) => {
                     </button>
                   </div>
             }
+            
         </nav>
         <Modal
         isOpen={modalIsOpen}
