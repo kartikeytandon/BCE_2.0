@@ -1,10 +1,10 @@
 .spinner {
     --color: #F3C4CD;
-    --size-mid: 4vmin;
+    --size-mid: 3vmin;
     /* --size-dot: 1.5vmin; */
     /* --size-bar: 0.4vmin; */
     /* --size-square: vmin; */
-
+    padding-left: 1.5vmin;
     display: block;
     position: relative;
     width: 50%;

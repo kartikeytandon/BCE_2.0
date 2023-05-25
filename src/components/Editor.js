@@ -45,9 +45,8 @@ export default function Editor(props) {
                     lint: true,
                     mode: language,
                     theme: 'material',
-                    lineNumbers: true
-
-
+                    lineNumbers: true,
+                    scrollbarStyle: "null",
                 }}
             />
         </div>
