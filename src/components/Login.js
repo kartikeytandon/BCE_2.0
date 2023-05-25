@@ -9,6 +9,7 @@ const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleuserc
 const Login = () => {
   const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
+    const [token, setToken] = useState()
     let email;
     // let accessToken
     let id
@@ -32,8 +33,10 @@ const Login = () => {
             console.log(response.data);
             console.log(response.data.token);
             const accessToken =  response.data.token
-            // localStorage.setItem('accessToken', accessToken)
-            Cookies.set('accessToken', accessToken);
+            localStorage.setItem('accessToken', accessToken)
+            console.log(localStorage.getItem('accessToken'))
+            // console.log(token)
+            // Cookies.set('accessToken', accessToken);
 
             if(response.data.message === "User not registered") {
               setLoggedIn(false)
@@ -45,10 +48,6 @@ const Login = () => {
         .catch(error => {
             console.error(error);
         });
-        // if (!localStorage.getItem('isLoggedInReloaded')) {
-        //   localStorage.setItem('isLoggedInReloaded', true);
-        //   window.location.reload();
-        // }
   }
   const onFailure = (res) => {
     console.log("Login failed", res);

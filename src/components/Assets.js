@@ -1,38 +1,5 @@
-import React from 'react';
-
-const AssetList = [
-  {
-    image: "/assets/schemasample.webp",
-    name: "background image",
-    url: "https://i.imgur.com/HVHq3Yz.jpeg"
-  },
-  {
-    image: "/assets/schemasample.webp",
-    name: "icons",
-    url: "https://i.imgur.com/HVHq3Yz.jpeg"
-  },
-  {
-    image: "/assets/schemasample.webp",
-    name: "text color",
-    url: "#17131A"
-  },
-  {
-    image: "/assets/schemasample.webp",
-    name: "background color",
-    url: "#2AF331"
-  },
-  {
-    image: "/assets/schemasample.webp",
-    name: "primary font",
-    url: "Inter"
-  },
-  {
-    image: "/assets/schemasample.webp",
-    name: "secondary font",
-    url: "lato"
-  },
-];
-
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
 
 const copyToClipboard = (text) => {
   navigator.clipboard.writeText(text)
@@ -45,22 +12,39 @@ const copyToClipboard = (text) => {
 };
 
 const Assets = () => {
+  const [asset, setAsset] = useState([])
+  const accessToken = localStorage.getItem('accessToken')
+
+  useEffect(() => {
+    axios.get('https://blockverseapi.brlakgec.com/asset_list/', {
+      headers: {  
+        Authorization: `Token ${accessToken}`
+      }
+    })
+    .then(response => {
+      console.log(response.data.asset_list);
+      setAsset(response.data.asset_list)
+    })
+    .catch(error => {
+      console.error(error);
+    });
+  }, []);
   return <>
   {/* <p className='text-bold text-xl tracking-wider text-center py-2 mx-4 my-2 bg-secondary opacity-70 font-inter w-full'>You can copy the required assets by clicking on the links!</p> */}
   <table className='w-[70%] grid gap-5'>
-        {AssetList.map((asset, index) => (
-            <tr key={index} className='bg-primary rounded-lg shadow-inner flex justify-between items-center'>
+        {asset.map((a) => (
+            <tr key={a.id} className='bg-primary rounded-lg shadow-inner flex justify-between items-center'>
             <td className="p-4 text-center w-1/3">
               <div className="w-40 aspect-video">
-                <img src={asset.image} alt="image" className="w-full h-full object-cover" />
+                <img src={a.asset_url} alt="image" className="w-full h-full object-cover" />
               </div>
             </td>
             <td className="p-4 text-center w-1/3 capitalize text-secondary font-inter">
-              <p>{asset.name}</p>
+              <p>{a.asset_name}</p>
             </td>
             <td className="p-4 text-center w-1/3">
-              <p className="text-blue-500 hover:underline cursor-pointer text-center" onClick={() => copyToClipboard(asset.url)}>
-                {asset.url}
+              <p className="text-blue-500 hover:underline cursor-pointer text-center" onClick={() => copyToClipboard(a.asset_url)}>
+                {a.asset_url}
               </p>
             </td>
           </tr>

@@ -5,7 +5,8 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 
 const Schema1 = () => {
-  const accessToken = Cookies.get('accessToken');
+  // const accessToken = Cookies.get('accessToken');
+  const accessToken = localStorage.getItem('accessToken')
   // const schemas = [
   //   { id: 1, name: 'SCHEMA - 1' },
   //   { id: 2, name: 'SCHEMA - 2' },
@@ -31,9 +32,11 @@ const Schema1 = () => {
 
   const handleClick = (schema_id) => {
     console.log(`Schema ${schema_id} clicked`);
-    console.log(accessToken);
+    // console.log(accessToken);
     let schema = `${schema_id}`
-    axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema_id }, {
+    localStorage.setItem('selectedSchema', schema)
+    // console.log(schema_id);
+    axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema }, {
       headers: {
         Authorization: `Token ${accessToken}`
       }

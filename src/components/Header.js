@@ -23,7 +23,8 @@ const Header = (props) => {
 
   const schemaUrl = localStorage.getItem('schemaImgUrl')
 
-  const accessToken = Cookies.get('accessToken');
+  // const accessToken = Cookies.get('accessToken');
+  const accessToken = localStorage.getItem('accessToken')
 
   const [ isAssets, setIsAssets ] = useState(false)
   const [isCheck, setIsCheck] = useState(false)
@@ -160,7 +161,7 @@ const Header = (props) => {
     console.log(props.css)
     let html_code = props.html
     let css_code = props.css
-    let submitted = true
+    // let submitted = true
     setSubmitted(true)
     axios.post('https://blockverseapi.brlakgec.com/submit/', { html_code, css_code, submitted }, {
       headers: {
@@ -179,7 +180,7 @@ const Header = (props) => {
     return (
       <Navigate
         to={{
-          pathname: '/logout',
+          pathname: '/submitted',
         }}
       />
     )
@@ -189,12 +190,8 @@ const Header = (props) => {
     const result = window.confirm("Are you sure you want to submit?")
     if(result) {
       finalSubmit()
-      localStorage.removeItem('remainingTime');
-      window.location.href = "/logout";
     }
   }
-
-
 
   return (
     <header className='flex items-center justify-between px-6 h-20'>
