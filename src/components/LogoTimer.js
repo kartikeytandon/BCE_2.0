@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const LogoTimer = () => {
+
+  const navigate = useNavigate()
     const blockverseLogo = "/assets/blockverselogo.webp"
-  const initialTime = {
-    hours: 2,
-    minutes: 0,
-    seconds: 0
-  };
+    const initialTime = {
+      hours: 2,
+      minutes: 0,
+      seconds: 0,
+    };
+
 
   const [remainingTime, setRemainingTime] = useState(() => {
     const storedTime = localStorage.getItem('remainingTime');
@@ -54,6 +58,18 @@ const LogoTimer = () => {
   };
 
   const { hours, minutes, seconds } = remainingTime;
+
+  if(hours === 0 && minutes === 0 && seconds === 0){
+    setRemainingTime({
+      hours: 2,
+      minutes: 0,
+      seconds: 0,
+    })
+    localStorage.removeItem('remainingTime')
+    console.log('timer over')
+
+    navigate("/")
+  }
 
   return (
     <div
