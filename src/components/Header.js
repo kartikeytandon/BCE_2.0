@@ -175,15 +175,15 @@ const Header = (props) => {
         });  
   }
 
-  // if(submitted) {
-  //   return (
-  //     <Navigate
-  //       to={{
-  //         pathname: '/',
-  //       }}
-  //     />
-  //   )
-  // }
+  if(submitted) {
+    return (
+      <Navigate
+        to={{
+          pathname: '/logout',
+        }}
+      />
+    )
+  }
 
   const finalSubmitCheck = () => {
     const result = window.confirm("Are you sure you want to submit?")
