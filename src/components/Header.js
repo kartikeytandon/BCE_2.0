@@ -20,6 +20,8 @@ const Header = (props) => {
   const submitIcon = "/assets/submiticon.webp"
   const schema = "/assets/schemasample.webp"
 
+  const schemaUrl = localStorage.getItem('schemaImgUrl')
+
   const accessToken = Cookies.get('accessToken');
 
   const [ isAssets, setIsAssets ] = useState(false)
@@ -120,7 +122,7 @@ const Header = (props) => {
 
     console.log(html_code);
     console.log(css_code);
-
+    
     
     axios.post('https://blockverseapi.brlakgec.com/score/', { html_code, css_code }, {
       headers: {  
@@ -273,7 +275,7 @@ const Header = (props) => {
               {
                 isAssets ?
                   <Assets /> : 
-                <img src={schema} alt="" className='w-3/4' />
+                <img src={schemaUrl} alt="" className='w-3/4' />
               }
             </div>
         </Modal>

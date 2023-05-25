@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Modal from 'react-modal';
 import { Navigate } from 'react-router-dom';
 import axios from 'axios';
@@ -6,17 +6,34 @@ import Cookies from 'js-cookie';
 
 const Schema1 = () => {
   const accessToken = Cookies.get('accessToken');
-  const schemas = [
-    { id: 1, name: 'SCHEMA - 1' },
-    { id: 2, name: 'SCHEMA - 2' },
-    { id: 3, name: 'SCHEMA - 3' },
-  ];
+  // const schemas = [
+  //   { id: 1, name: 'SCHEMA - 1' },
+  //   { id: 2, name: 'SCHEMA - 2' },
+  //   { id: 3, name: 'SCHEMA - 3' },
+  // ];
 
-  const handleClick = (id) => {
-    console.log(`Schema ${id} clicked`);
+  const [schemas, setSchemas] = useState([])
+
+  useEffect(() => {
+  axios.get('https://blockverseapi.brlakgec.com/schema_list/', {
+    headers: {  
+      Authorization: `Token ${accessToken}`
+    }
+  })
+  .then(response => {
+    console.log(response.data.schema_list);
+    setSchemas(response.data.schema_list)
+  })
+  .catch(error => {
+    console.error(error);
+  });
+}, []);
+
+  const handleClick = (schema_id) => {
+    console.log(`Schema ${schema_id} clicked`);
     console.log(accessToken);
-    let schema = `${id}`
-    axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema }, {
+    let schema = `${schema_id}`
+    axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema_id }, {
       headers: {
         Authorization: `Token ${accessToken}`
       }
@@ -59,13 +76,14 @@ const Schema1 = () => {
     setSchemaModal({...schemaModal, [id]: true});
   }
 
-  function closeModal(id) {
-    setSchemaModal({...schemaModal, [id]: false});
+  function closeModal(schema_id) {
+    setSchemaModal({...schemaModal, [schema_id]: false});
   }
 
-  function startCode(id) {
+  function startCode(schema_id, image_url) {
     setStart(true)
-    handleClick(id);
+    handleClick(schema_id);
+    localStorage.setItem('schemaImgUrl', image_url)
   }
 
   if(start) {
@@ -77,10 +95,10 @@ const Schema1 = () => {
   return (
     <div className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32'>
       {schemas.map(schema => (
-        <div key={schema.id}>
+        <div key={schema.schema_id}>
         <div className='schema w-fit flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-lg'>
-          <h1 className='text-xl tracking-wide'>{schema.name}</h1>
-          <img src={schemaSample} alt="" className='w-52' />
+          <h1 className='text-xl tracking-wide'>{schema.schema_name}</h1>
+          <img src={schema.image_url} alt="" className='w-52' />
           <button className='tracking-wide py-2 px-4' onClick={() => openModal(schema.id)}>SELECT</button>
           <Modal
             isOpen={schemaModal[schema.id]}
@@ -89,17 +107,17 @@ const Schema1 = () => {
             contentLabel="Example Modal"
           > 
             <div>
-              <h1 className='text-3xl tracking-wide text-center'>{schema.name}</h1>
+              <h1 className='text-3xl tracking-wide text-center'>{schema.schema_name}</h1>
               <div id='warning'>
                 <p className='text-bold text-xl tracking-wider text-center py-2 mx-4 my-2'>YOU CANNOT REVERT THIS ACTION. CHOOSE WISELY!</p>
               </div>
               <div className='flex justify-center my-8'>
-                <img src={schemaSample} alt="" className='w-2/4' />
+                <img src={schema.image_url} alt="" className='w-2/4' />
               </div>
               <div className='flex items-center justify-center gap-8'>
-                <button className='tracking-wide py-2 px-4' onClick={() => closeModal(schema.id)}>RETURN</button>
+                <button className='tracking-wide py-2 px-4' onClick={() => closeModal(schema.schema_id)}>RETURN</button>
                 <button className='tracking-wide py-2 px-4' onClick={() => {
-                  startCode(schema.id);
+                  startCode(schema.schema_id, schema.image_url);
                   // handleClick(schema.id);
                 }}>START</button>
               </div>
