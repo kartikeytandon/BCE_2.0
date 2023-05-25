@@ -176,20 +176,22 @@ const Header = (props) => {
         });  
   }
 
-  if(submitted) {
-    return (
-      <Navigate
-        to={{
-          pathname: '/submitted',
-        }}
-      />
-    )
-  }
+  // if(submitted) {
+  //   return (
+  //     <Navigate
+  //       to={{
+  //         pathname: '/',
+  //       }}
+  //     />
+  //   )
+  // }
 
   const finalSubmitCheck = () => {
     const result = window.confirm("Are you sure you want to submit?")
     if(result) {
       finalSubmit()
+      localStorage.removeItem('remainingTime');
+      window.location.href = "/logout";
     }
   }
 

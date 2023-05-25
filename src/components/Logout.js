@@ -1,32 +1,77 @@
-import React, { useState } from 'react'
-import { GoogleLogout } from 'react-google-login' 
-import { Navigate } from 'react-router-dom';
+// import React, { useState } from 'react'
+// import { GoogleLogout } from 'react-google-login' 
+// import { Navigate } from 'react-router-dom';
 
-const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
+// const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
+
+// const Logout = () => {
+//   const [loggedOut, setLoggedOut] = useState(false);
+
+//   const onSuccess = () => {
+//     console.log("Logged Out");
+//     setLoggedOut(true)
+//     localStorage.removeItem('remainingTime');
+//   }
+
+//     if (loggedOut) {
+      
+//     localStorage.removeItem('remainingTime');
+//         return <Navigate to="/" />;
+//     }
+//   return (
+//     <div>
+//         <GoogleLogout
+//             clientId={clientId}
+//             buttonText={'Log out'}
+//             onLogoutSuccess={onSuccess}
+//         />
+//     </div>
+//   )
+// }
+
+// export default Logout
+
+import React, { useState, useEffect } from 'react';
+import { GoogleLogout } from 'react-google-login';
+import { Navigate, useNavigate } from 'react-router-dom';
+
+const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com";
 
 const Logout = () => {
   const [loggedOut, setLoggedOut] = useState(false);
 
   const onSuccess = () => {
     console.log("Logged Out");
-    setLoggedOut(true)
+    setLoggedOut(true);
     localStorage.removeItem('remainingTime');
+  };
+
+  useEffect(() => {
+    if (!loggedOut) {
+      onSuccess(); 
+    }
+  }, [loggedOut]);
+
+  if(loggedOut) {
+    localStorage.removeItem('remainingTime');
+    return (
+      <Navigate
+        to={{
+          pathname: '/',
+        }}
+      />
+    )
   }
 
-    if (loggedOut) {
-      
-    localStorage.removeItem('remainingTime');
-        return <Navigate to="/" />;
-    }
   return (
     <div>
-        <GoogleLogout
-            clientId={clientId}
-            buttonText={'Log out'}
-            onLogoutSuccess={onSuccess}
-        />
+      <GoogleLogout
+        clientId={clientId}
+        buttonText="Log out"
+        onLogoutSuccess={onSuccess}
+      />
     </div>
-  )
-}
+  );
+};
 
-export default Logout
+export default Logout;
