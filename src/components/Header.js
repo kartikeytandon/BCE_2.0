@@ -83,7 +83,6 @@ const Header = (props) => {
       mixBlendMode: 'normal',
       border: '2px solid #2E003A',
       borderRadius: '20px',
-      zIndex: '99',
     },
   };      
   
