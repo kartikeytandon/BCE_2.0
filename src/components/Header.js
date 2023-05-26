@@ -166,7 +166,7 @@ const Header = (props) => {
     let css_code = props.css
     // let submitted = true
     setSubmitted(true)
-    axios.post('https://blockverseapi.brlakgec.com/submit/', { html_code, css_code, submitted }, {
+    axios.post('https://blockverseapi.brlakgec.com/submit/', { html_code, css_code }, {
       headers: {
         Authorization: `Token ${accessToken}`
       }
