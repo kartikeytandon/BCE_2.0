@@ -3,7 +3,7 @@ import axios from 'axios'
 import Cookies from 'js-cookie';
 
 const TeamLeaderboard = () => {
-  const accessToken = Cookies.get('accessToken');
+  const accessToken = localStorage.getItem('accessToken')
   const [teamDetails, setTeamDetails] = useState([])
 
   const sortedTeams = [...teamDetails].sort((a, b) => b.score - a.score);
