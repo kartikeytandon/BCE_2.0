@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
-const LogoTimer = () => {
+const LogoTimer = (props) => {
+
+  const accessToken = localStorage.getItem('accessToken')
 
   const navigate = useNavigate()
     const blockverseLogo = "/assets/blockverselogo.webp"
@@ -11,6 +14,28 @@ const LogoTimer = () => {
       seconds: 0,
     };
 
+
+    const finalSubmit = () => {
+    console.log(props.html)
+    console.log(props.css)
+    let html_code = props.html
+    let css_code = props.css
+    // let submitted = true
+    // setSubmitted(true)
+
+    axios.post('https://blockverseapi.brlakgec.com/submit/', { html_code, css_code }, {
+      headers: {
+        Authorization: `Token ${accessToken}`
+      }
+    })
+        .then(response => {
+            console.log(response.data);
+            localStorage.setItem('isSubmitted', true)
+        })
+        .catch(error => {
+            console.error(error);
+        });  
+  }
 
   const [remainingTime, setRemainingTime] = useState(() => {
     const storedTime = localStorage.getItem('remainingTime');
@@ -59,7 +84,7 @@ const LogoTimer = () => {
 
   const { hours, minutes, seconds } = remainingTime;
 
-  if(hours === 1 && minutes === 59 && seconds === 20){
+  if(hours === 0 && minutes === 0 && seconds === 0){
     setRemainingTime({
       hours: 2,
       minutes: 0,
@@ -67,7 +92,7 @@ const LogoTimer = () => {
     })
     localStorage.removeItem('remainingTime')
     console.log('timer over')
-
+    finalSubmit()
     navigate("/submitted")
   }
 
