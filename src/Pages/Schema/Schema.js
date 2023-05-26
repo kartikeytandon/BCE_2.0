@@ -7,15 +7,15 @@ const Schema = () => {
   const brlLogo = "/assets/brl-logo-svg.svg"
   return (
     <section className='schemaSection flex flex-col justify-between pb-5 items-center'>
-        <div className='w-[60%]'>
+        {/* <div className='w-[60%]'> */}
           <Head />
-        </div>
+        {/* </div> */}
         <article className='flex flex-col lg:flex-row items-center justify-center lg:justify-center gap-10 lg:gap-32 rounded-lg'>
             <Schema1 />
         </article>
 
-         {/* Footer Logo */}
-        <img src={brlLogo} alt="brl_logo" className='w-[10rem] aspect-auto invert' />
+        {/* Footer Logo */}
+        <img src={brlLogo} alt="brl_logo" className='w-[8rem] aspect-auto invert my-3' />
     </section>
   )
 }
