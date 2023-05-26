@@ -18,14 +18,23 @@ const Logout = () => {
     return <Navigate to="/" />;
   }
 
+  const CustomGoogleButton = ({ onClick }) => (
+    <button onClick={onClick} className="custom-google-button px-6 py-2">
+      LOGOUT
+    </button>
+  );
+
   return (
-    <div>
-      <GoogleLogout
-        clientId={clientId}
-        buttonText={'Log out'}
-        onLogoutSuccess={onSuccess}
-      />
-    </div>
+    <article className='w-fit text-center  mx-auto'>
+        <GoogleLogout
+          clientId={clientId}
+          buttonText={'Log out'}
+          onLogoutSuccess={onSuccess}
+          render={renderProps => (
+                <CustomGoogleButton onClick={renderProps.onClick} />
+              )}
+        />
+    </article>
   );
 };
 
