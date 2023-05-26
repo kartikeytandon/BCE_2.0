@@ -15,10 +15,6 @@ const Login = () => {
     // let accessToken
     let id
 
-    const reload = () => {
-      window.location.reload();
-    }
-
   const onSuccess = (res) => {
     // if (res.profileObj && res.profileObj.email) {
     //   console.log("Login success", res.profileObj);
@@ -43,14 +39,14 @@ const Login = () => {
               setLoggedIn(false)
               alert("You're not registered for the event. Please check your Login Mail!")
             } else {
-              setLoggedIn(true) 
+              setLoggedIn(true)
             }
 
             console.log(response.data.final_submission);
             if(response.data.final_submission === true) {
+              alert("You've already Submitted")
               setLoggedIn(false)
               navigate('/');
-              alert("You've already Submitted")
             }
         })
         .catch(error => {
@@ -61,15 +57,6 @@ const Login = () => {
     console.log("Login failed", res);
   }
 
-  // useEffect(() => {
-  //   const isLoggedInReloaded = localStorage.getItem('isLoggedInReloaded');
-  
-  //   if (isLoggedInReloaded) {
-  //     localStorage.removeItem('isLoggedInReloaded');
-  //     setLoggedIn(true);
-  //   }
-  // }, []);
-
   useEffect(() => {
     localStorage.setItem('loggedIn', loggedIn)
   }, [loggedIn]);
@@ -79,25 +66,11 @@ const Login = () => {
       <Navigate
         to={{
           pathname: '/schema',
-          // state: { accessToken: accessToken } 
-          // state: accessToken 
         }}
       />
     )
   }
 
-  // const GoogleLogin = () => {
-  //   return (
-  //     <GoogleLogin
-  //           clientId={clientId}    
-  //           buttonText="Login"
-  //           onSuccess={onSuccess}
-  //           onFailure={onFailure}
-  //           cookiePolicy={'single_host_origin'}
-  //           isSignedIn={true}
-  //     />
-  //   )
-  // }
   const CustomGoogleButton = ({ onClick }) => (
     <button onClick={onClick} className="custom-google-button px-6 py-2">
       LOGIN

@@ -3,8 +3,10 @@ import useLocalStorage from '../../hooks/useLocalStorage'
 import Editor from '../Editor'
 import Header from '../Header'
 import './EditorComp.css'
+import { useLocation } from 'react-router'
 
 const EditorComp = () => {
+  const location = useLocation();
   const [html, setHtml] = useLocalStorage('html', '')
   const [css, setCss] = useLocalStorage('css', '')
   // const [js, setJs] = useLocalStorage('js', '')
@@ -18,6 +20,19 @@ const EditorComp = () => {
       
         return () => clearTimeout(timeout);
       }, [html, css]);
+
+      const [pageReloaded, setPageReloaded] = useState(false);
+
+      // useEffect(() => {
+      //   if (location.pathname === '/blockverse' && !pageReloaded) {
+      //     setPageReloaded(true);
+      //     window.location.reload();
+      //   }
+      // }, [location.pathname, pageReloaded]);
+
+      useEffect(() => {
+        localStorage.setItem('selectedSchema', 'true')
+      }, [location])
 
       // console.log(html);
       // console.log(css);

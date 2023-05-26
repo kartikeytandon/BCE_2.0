@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Header from './components/Header'
 import html2canvas from 'html2canvas';
-import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate, Navigate } from 'react-router-dom';
 import Leaderboard from './components/Leaderboard';
 import EditorComp from './components/EditorComp/EditorComp';
 import Login from './components/Login';
@@ -42,16 +42,31 @@ const scope = "email profile"
 // };
 
 function App() {
+  const navigate = useNavigate()
+  const location = useLocation();
+
   const [screenshot, setScreenshot] = useState(null);
 
   const [accessToken, setAccessToken] = useState('');
 
+  useEffect(() => {
+    if(location.pathname === '/schema' && (localStorage.getItem('selectedSchema') === 'true')) {  
+      // if(location.pathname === '/schema') {
+        navigate('/blockverse')
+      // }
+    }
+  }, [location.pathname, navigate])
 
-  const location = useLocation();
-const navigate = useNavigate();
+
 
 const [selectedSchema, setSelectedSchema] = useState(localStorage.getItem('selectedSchema'));
 const [submitted, setSubmitted] = useState(localStorage.getItem('isSubmitted'));
+
+// useEffect(() => {
+//   if(localStorage.getItem('accessToken') === undefined) {
+//     navigate('/')
+//   }
+// }, [localStorage.getItem('accessToken')])
 
 // useEffect(() => {
 //   console.log("Location Pathname:", location.pathname);
