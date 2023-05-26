@@ -13,9 +13,10 @@ const Schema1 = () => {
   //   { id: 3, name: 'SCHEMA - 3' },
   // ];
 
-  const [schemas, setSchemas] = useState([])
+  const [schemas, setSchemas] = useState([]);
+const [schemaSelected, setSelectedSchema] = useState(false);
 
-  useEffect(() => {
+useEffect(() => {
   axios.get('https://blockverseapi.brlakgec.com/schema_list/', {
     headers: {  
       Authorization: `Token ${accessToken}`
@@ -23,31 +24,32 @@ const Schema1 = () => {
   })
   .then(response => {
     console.log(response.data.schema_list);
-    setSchemas(response.data.schema_list)
+    setSchemas(response.data.schema_list);
+    localStorage.setItem('selectedSchema', schemaSelected);
   })
   .catch(error => {
     console.error(error);
   });
 }, []);
 
-  const handleClick = (schema_id) => {
-    console.log(`Schema ${schema_id} clicked`);
-    // console.log(accessToken);
-    let schema = `${schema_id}`
-    localStorage.setItem('selectedSchema', schema)
-    // console.log(schema_id);
-    axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema }, {
-      headers: {
-        Authorization: `Token ${accessToken}`
-      }
-    })  
-        .then(response => {
-            console.log(response.data);
-        })
-        .catch(error => {
-            console.error(error);
-        });
-  };
+const handleClick = (schema_id) => {
+  console.log(`Schema ${schema_id} clicked`);
+  let schema = `${schema_id}`;
+  axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema }, {
+    headers: {
+      Authorization: `Token ${accessToken}`
+    }
+  })
+  .then(response => {
+    console.log(response.data);
+    setSelectedSchema(true); 
+    localStorage.setItem('selectedSchema', true);
+    localStorage.setItem('schemaUpdated', false)
+  })
+  .catch(error => {
+    console.error(error);
+  });
+};
 
   const schemaSample = "/assets/schemasample.webp"
     const customStyles = {

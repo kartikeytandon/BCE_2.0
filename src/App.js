@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Header from './components/Header'
 import html2canvas from 'html2canvas';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import Leaderboard from './components/Leaderboard';
 import EditorComp from './components/EditorComp/EditorComp';
 import Login from './components/Login';
@@ -45,6 +45,61 @@ function App() {
   const [screenshot, setScreenshot] = useState(null);
 
   const [accessToken, setAccessToken] = useState('');
+
+
+  const location = useLocation();
+const navigate = useNavigate();
+
+const [selectedSchema, setSelectedSchema] = useState(localStorage.getItem('selectedSchema'));
+const [submitted, setSubmitted] = useState(localStorage.getItem('isSubmitted'));
+
+// useEffect(() => {
+//   console.log("Location Pathname:", location.pathname);
+//   console.log("Selected Schema:", selectedSchema);
+
+//   if (location.pathname === '/schema' && selectedSchema === 'true') {
+//     console.log("Navigating to /blockverse");
+//     navigate('/blockverse');
+//   }
+// }, [location.pathname, selectedSchema]);
+
+// For preventing the navigation from blockverse route to schema route after the schema selection
+useEffect(() => {
+  console.log("Location Pathname:", location.pathname);
+  console.log("Selected Schema:", selectedSchema);
+
+  localStorage.setItem('schemaUpdated', true)
+
+  const targetRoute = '/blockverse';
+
+  // (location.pathname === '/schema' && localStorage.getItem('schemaUpdated') === 'true')
+  if ((location.pathname === '/schema' && selectedSchema === 'true')) {
+    console.log("Navigating to /blockverse");
+    navigate(targetRoute, { replace: true });
+  }
+}, [location.pathname, selectedSchema]);
+
+
+useEffect(() => {
+  console.log("Location Pathname:", location.pathname);
+  console.log("Selected Schema:", submitted);
+
+  localStorage.setItem('finallySubmitted', true)
+
+  const targetRoute = '/submitted';
+
+  // (location.pathname === '/blockverse' && localStorage.getItem('finallySubmitted') === 'true')
+  if ((location.pathname === '/blockverse' && submitted === 'true')) {
+    console.log("Navigating to /submitted");
+    navigate(targetRoute, { replace: true });
+  }
+}, [location.pathname, selectedSchema]);
+
+
+
+
+
+
 
   // useEffect(() => {
   //   function start() {
