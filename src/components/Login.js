@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
-import { Navigate, useLocation } from 'react-router-dom';
-import axios from 'axios';
+import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import axios from 'axios'; 
 import Cookies from 'js-cookie';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 
 const Login = () => {
+  const navigate = useNavigate();
   const location = useLocation();
     const [loggedIn, setLoggedIn] = useState(false);
     const [token, setToken] = useState()
@@ -43,6 +44,13 @@ const Login = () => {
               alert("You're not registered for the event. Please check your Login Mail!")
             } else {
               setLoggedIn(true) 
+            }
+
+            console.log(response.data.final_submission);
+            if(response.data.final_submission === true) {
+              setLoggedIn(false)
+              navigate('/');
+              alert("You've already Submitted")
             }
         })
         .catch(error => {
