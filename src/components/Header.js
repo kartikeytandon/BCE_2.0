@@ -49,7 +49,7 @@ const Header = (props) => {
         console.log('Timer ended!')
         setDisabled(false)
       }
-    }, 1000);
+    }, 3750);
   }
 
   useEffect(() => {
@@ -226,7 +226,7 @@ const Header = (props) => {
             <div className='flex'>
               <button className='headBtn cursor-not-allowed flex items-center gap-2 px-5 py-2'>
                 <span className='text-xl text-gray-500'>CHECK</span>
-                <img src={checkIcon} alt="" className='ml-2' />
+                <img src={checkIcon} alt="" className='ml-2 opacity-50' />
               </button>
             </div> : 
             <div className='flex'>
@@ -250,7 +250,7 @@ const Header = (props) => {
                     : <div disabled className='flex'>
                     <button className='headBtn flex cursor-not-allowed  items-center gap-2 px-5 py-2'>
                     <span className='text-xl text-gray-500'>SUBMIT</span>
-                      <img src={submitIcon} alt="" className='ml-2' />
+                      <img src={submitIcon} alt="" className='ml-2 opacity-50' />
                     </button>
                   </div>
             }

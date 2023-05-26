@@ -67,7 +67,7 @@ const LogoTimer = () => {
     })
     localStorage.removeItem('remainingTime')
     console.log('timer over')
-
+    
     navigate("/submitted")
   }
 
