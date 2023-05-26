@@ -54,6 +54,7 @@ const Header = (props) => {
 
   useEffect(() => {
     localStorage.setItem('currScore', currScore);
+    localStorage.setItem('isSubmitted', submitted)
   }, [currScore]);
 
   // localStorage.setItem('currentScore', 0);
@@ -170,6 +171,7 @@ const Header = (props) => {
     })
         .then(response => {
             console.log(response.data);
+            localStorage.setItem('isSubmitted', true)
         })
         .catch(error => {
             console.error(error);
