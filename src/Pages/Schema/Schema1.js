@@ -73,12 +73,12 @@ const handleClick = (schema_id) => {
   const [start, setStart] = useState(false)
 
   const [schemaModal, setSchemaModal] = useState(schemas.reduce((obj, schema) => {
-    obj[schema.id] = false;
+    obj[schema.schema_id] = false;
     return obj;
   }, {}));
 
-  function openModal(id) {
-    setSchemaModal({...schemaModal, [id]: true});
+  function openModal(schema_id) {
+    setSchemaModal({...schemaModal, [schema_id]: true});
   }
 
   function closeModal(schema_id) {
@@ -104,10 +104,10 @@ const handleClick = (schema_id) => {
         <div className='schema w-fit flex flex-col justify-center items-center gap-4 px-8 py-4 rounded-lg'>
           <h1 className='text-xl tracking-wide'>{schema.schema_name}</h1>
           <img src={schema.image_url} alt="" className='w-52' />
-          <button className='tracking-wide py-2 px-4' onClick={() => openModal(schema.id)}>SELECT</button>
+          <button className='tracking-wide py-2 px-4' onClick={() => openModal(schema.schema_id)}>SELECT</button>
           <Modal
-            isOpen={schemaModal[schema.id]}
-            onRequestClose={() => closeModal(schema.id)}
+            isOpen={schemaModal[schema.schema_id]}
+            onRequestClose={() => closeModal(schema.schema_id)}
             style={customStyles}
             contentLabel="Example Modal"
           > 
