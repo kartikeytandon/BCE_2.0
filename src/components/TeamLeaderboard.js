@@ -33,7 +33,7 @@ const TeamLeaderboard = () => {
                 <td className="px-4 py-2 text-xl text-center">{index+1}</td>
                 <td className="px-4 py-2 text-xl text-center">{team.team_name}</td>
                 <td className="px-4 py-2 text-xl text-center">{team.score}</td>
-                <td className="px-4 py-2 text-xl text-center">1:22:22</td>
+                <td className="px-4 py-2 text-xl text-center">{team.time_taken}</td>
               </tr>
             )
           })

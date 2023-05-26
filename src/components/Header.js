@@ -135,6 +135,8 @@ const Header = (props) => {
       }
     })
     .then(response => {
+      window.location.reload();
+      window.stop();
       console.log(response.data);
       let cScore = response.data.score
       localStorage.setItem('currentScore', cScore)
