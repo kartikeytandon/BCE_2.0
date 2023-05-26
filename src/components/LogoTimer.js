@@ -59,7 +59,7 @@ const LogoTimer = () => {
 
   const { hours, minutes, seconds } = remainingTime;
 
-  if(hours === 0 && minutes === 0 && seconds === 0){
+  if(hours === 1 && minutes === 59 && seconds === 20){
     setRemainingTime({
       hours: 2,
       minutes: 0,
@@ -67,7 +67,7 @@ const LogoTimer = () => {
     })
     localStorage.removeItem('remainingTime')
     console.log('timer over')
-    
+
     navigate("/submitted")
   }
 
