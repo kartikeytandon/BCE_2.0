@@ -37,20 +37,23 @@ const Header = (props) => {
   return score ? Number(score) : 0
 });
 
-  let timeLeft = 20;
+  const isCheckDisabled = localStorage.getItem('isCheckDisabled') ? JSON.stringify(localStorage.getItem('isCheckDisabled')) : localStorage.setItem('isCheckedDisabled', JSON.parse(disabled))
+  console.log(isCheckDisabled)
 
-  const checkDisabled = () => {
-    const intervalId = setInterval(() => {
-      timeLeft--;
-      // console.log(`Time left: ${timeLeft}s`);
+  // let timeLeft = 20;
+
+  // const checkDisabled = () => {
+  //   const intervalId = setInterval(() => {
+  //     timeLeft--;
+  //     // console.log(`Time left: ${timeLeft}s`);
   
-      if (timeLeft === 0) {
-        clearInterval(intervalId)
-        console.log('Timer ended!')
-        setDisabled(false)
-      }
-    }, 3750);
-  }
+  //     if (timeLeft === 0) {
+  //       clearInterval(intervalId)
+  //       console.log('Timer ended!')
+  //       setDisabled(false)
+  //     }
+  //   }, 3750);
+  // }
 
   useEffect(() => {
     localStorage.setItem('currScore', currScore);
@@ -92,7 +95,8 @@ const Header = (props) => {
     setIsLoadingAfterCheck(true)
     setIsCheck(true)
     setDisabled(true)
-    checkDisabled()
+    // checkDisabled()
+    setTimeout(() => {setDisabled(false)}, 15000)
     alert('you can now submit your response!');
 
     let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")

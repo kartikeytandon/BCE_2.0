@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const LeadHead = () => {
   return (
     <>
-      <div class="container px-12">
+      <div class="container px-12 mx-auto">
         <div className='flex items-center justify-center gap-80'>
           <h1 className='text-4xl text-center py-4'>LEADERBOARD</h1>
           <h1 className='text-4xl text-center py-4 invisible'>HELLO THERE</h1>
@@ -13,9 +13,9 @@ const LeadHead = () => {
             <Link className='text-white text-lg' to='/blockverse'>CLOSE</Link>
           </button>
         </div>
-          <table class="table-auto w-full border-collapse leadTable">
+          <table class="table-auto w-full border-collapse rounded-lg leadTable">
               <thead>
-                  <tr class="text-left text-white">
+                  <tr class="text-left text-white bg-primary">
                       <th class="px-4 py-2 text-2xl text-center">Position</th>
                       <th class="px-4 py-2 text-2xl text-center">Team Name</th>
                       <th class="px-4 py-2 text-2xl text-center">Current Accuracy</th>

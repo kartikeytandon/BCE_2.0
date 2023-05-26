@@ -1,9 +1,9 @@
 import React from 'react'
 import "./Loader.css"
 
-const Loader = () => {
-  return <div class="item">
-			<i class="spinner"></i>
+const Loader = ({classProp}) => {
+  return <div className={classProp}>
+			<i className="spinner"></i>
 		</div>
 }
 
