@@ -16,8 +16,8 @@ const LogoTimer = (props) => {
 
 
     const finalSubmit = () => {
-    console.log(props.html)
-    console.log(props.css)
+    // console.log(props.html)
+    // console.log(props.css)
     let html_code = props.html
     let css_code = props.css
     // let submitted = true
@@ -29,7 +29,7 @@ const LogoTimer = (props) => {
       }
     })
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             localStorage.setItem('isSubmitted', true)
         })
         .catch(error => {
@@ -91,7 +91,7 @@ const LogoTimer = (props) => {
       seconds: 0,
     })
     localStorage.removeItem('remainingTime')
-    console.log('timer over')
+    // console.log('timer over')
     finalSubmit()
     navigate("/submitted")
   }
