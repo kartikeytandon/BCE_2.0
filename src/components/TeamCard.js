@@ -1,3 +1,5 @@
+import "./TeamCard.css"
+
 const TeamData = [
     {
         image_path: "/assets/Janmejay.webp",
@@ -7,22 +9,12 @@ const TeamData = [
     {
         image_path: "/assets/shahbaz.webp",
         name: "Shahbaz Ali",
-        description: "Project Lead"
+        description: "Senior Backend Developer"
     },
     {
         image_path: "/assets/Piyush.webp",
         name: "Piyush Rai",
-        description: "Project Lead"
-    },
-    {
-        image_path: "/assets/keshav.webp",
-        name: "Keshav Gupta",
-        description: "ML Developer"
-    },
-    {
-        image_path: "/assets/shahswat.webp",
-        name: "Shashwat Singh",
-        description: "Backend Developer"
+        description: "Senior ML Developer"
     },
     {
         image_path: "/assets/kartikey.webp",
@@ -34,24 +26,37 @@ const TeamData = [
         name: "Utkarsh Khokhar",
         description: "Frontend Developer"
     },
+    {
+        image_path: "/assets/shahswat.webp",
+        name: "Shashwat Singh",
+        description: "Backend Developer"
+    },
+    {
+        image_path: "/assets/keshav.webp",
+        name: "Keshav Gupta",
+        description: "ML Developer"
+    },
 ]
 
 const Card = ({image_path, name, description}) => {
     return (
-        <div className="bg-primary p-3 grid place-items-center text-center w-1/4 rounded-lg shadow-glow">
-            <div className="mx-auto w-[100%] aspect-square">
-                <img src={image_path} alt={`${name}.image`} className="w-full h-full object-cover rounded-lg " />
-            </div>
+        <div className="grid bg-[#000a27]  place-items-center text-center w-1/4 rounded-lg shadow-glow">
+            <div className="container mx-auto w-[100%]  aspect-square">
+                <img src={image_path} alt={`${name}.image`} className="w-full h-full object-cover" />
             
-            <span className="text-xl font-lato font-bold capitalize py-2 text-secondary">{name}</span>
-            <span className="text-sm font-iceberg font-medium uppercase text-white">{description}</span>
+            <h2 className="text-xl font-lato font-bold capitalize py-1 text-secondary">
+                {name}
+                <br />
+                <span className="text-sm font-iceberg font-medium uppercase text-white">{description}</span>
+            </h2>
+            </div>
         </div>
     )
 }
 
 const TeamCard = () => {
   return (
-    <article className="mx-auto flex flex-wrap justify-center items-center w-[95%] gap-10">
+    <article className="mx-auto  flex flex-wrap justify-center items-center w-[95%] gap-10">
         {
             TeamData.map(({ image_path, name, description }) => {
                 return <Card 

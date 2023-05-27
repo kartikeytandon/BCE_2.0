@@ -280,7 +280,7 @@ const Header = (props) => {
               <div></div>
 
                 <div>
-                  <h1 className='text-4xl tracking-wider col-start-2 text-center self-center'>Our Team</h1>
+                  <h1 className='text-4xl tracking-wider col-start-2 text-center self-center'>Creators</h1>
                 </div>
 
                 <div className='flex items-center gap-4 justify-self-end'>

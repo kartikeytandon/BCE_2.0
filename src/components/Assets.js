@@ -51,7 +51,7 @@ const Assets = () => {
           asset.map((a) => (
             <div>
               <div className='w-[70%] mx-auto m-4'>
-                <img src={a.margin-schema} />
+                <img src="source.unsplash.com/random?grayscale" />
               </div>
               <tr key={a.id} className='bg-primary rounded-lg shadow-inner flex justify-between items-center'>
               <td className="p-4 text-center w-1/3">
