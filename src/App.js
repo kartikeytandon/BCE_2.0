@@ -171,7 +171,7 @@ const [submitted, setSubmitted] = useState(localStorage.getItem('isSubmitted'));
         <Route path='/blockverse' element={<Protected><EditorComp /></Protected>} />
         <Route path='/leaderboard' element={<Protected><Leaderboard /></Protected>} />
         <Route path='/submitted' element={<Protected><Submitted /></Protected>} />
-        <Route path='/logout' element={<Logout />} />
+        <Route path='/logout' element={<Protected><Logout /></Protected>} />
       </Routes>
     </>
   )

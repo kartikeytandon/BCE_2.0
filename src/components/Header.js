@@ -11,6 +11,8 @@ import LogoTimer from './LogoTimer';
 // import { encode, decode, Base64 } from 'js-base64';
 import Base64, { decode } from 'base-64'
 import Loader from './Loader';
+import TeamCard from './TeamCard';
+import {IoIosPeople} from "react-icons/io"
 
 const Header = (props) => {
   
@@ -36,9 +38,17 @@ const Header = (props) => {
   const score = localStorage.getItem('currScore')
   return score ? Number(score) : 0
 });
+  const [ isTeamModalOpen, setIsTeamModalOpen ] = useState(false)
 
-  const isCheckDisabled = localStorage.getItem('isCheckDisabled') ? JSON.stringify(localStorage.getItem('isCheckDisabled')) : localStorage.setItem('isCheckedDisabled', JSON.parse(disabled))
-  console.log(isCheckDisabled)
+  const [ isTeamVisible, setIsTeamVisible ] = useState(false)
+
+  function mouseOnTeam(){
+    setIsTeamVisible(true)
+  }
+
+  function mouseNotOnTeam(){
+    setIsTeamVisible(false)
+  }
 
   // let timeLeft = 20;
 
@@ -69,6 +79,14 @@ const Header = (props) => {
     setIsOpen(false);
   }
 
+   function openTeamModal(){
+    setIsTeamModalOpen(true)
+  }
+
+  function closeTeamModal() {
+    setIsTeamModalOpen(false)
+  }
+
   const handleAsset = () => {
     setIsAssets(!isAssets)
     console.log(isAssets)
@@ -96,7 +114,7 @@ const Header = (props) => {
     setIsCheck(true)
     setDisabled(true)
     // checkDisabled()
-    setTimeout(() => {setDisabled(false)}, 15000)
+    setTimeout(() => {setDisabled(false)}, 120000)
     // alert('you can now submit your response!');
 
     let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
@@ -115,8 +133,6 @@ const Header = (props) => {
       }
     })
     .then(response => {
-      window.location.reload();
-      window.stop();
       console.log(response.data);
       let cScore = response.data.score
       localStorage.setItem('currentScore', cScore)
@@ -238,6 +254,50 @@ const Header = (props) => {
             }
             
         </nav>
+
+            {/* TEAM BUTTON */}
+        <div className='flex absolute bottom-5 right-5'>
+            <button onClick={openTeamModal} onMouseEnter={mouseOnTeam} onMouseLeave={mouseNotOnTeam} className='headBtn rounded-full flex transition-width ease-in-out duration-500 items-center gap-2 p-2'>
+              {/* <span className={`text-xl ${isTeamVisible ? 'w-auto' : 'w-0'} transition-width ease-in-out duration-500`}>{isTeamVisible && 'OUR TEAM'}</span> */}
+              {/* {
+                isTeamVisible && <span className='text-xl'>OUR TEAM</span>
+              } */}
+              <IoIosPeople fontSize={30} />
+              {/* <img src={teamSVG} alt="" className='ml-2' /> */}
+            </button>
+          </div>
+
+            {/* TEAM MODAL */}
+           <Modal
+        isOpen={isTeamModalOpen}
+        // onAfterOpen={afterOpenModal}
+        onRequestClose={closeTeamModal}
+        style={customStyles}
+        contentLabel="Example Modal"
+        overlayClassName="Overlay"
+        >
+            <div className='grid grid-rows-1 grid-cols-3 w-[100%]'>
+              <div></div>
+
+                <div>
+                  <h1 className='text-4xl tracking-wider col-start-2 text-center self-center'>Our Team</h1>
+                </div>
+
+                <div className='flex items-center gap-4 justify-self-end'>
+                  <button className='tracking-wide w-fit py-2 px-4' onClick={closeTeamModal}>CLOSE</button>
+                </div>
+            </div>
+            <div className='flex justify-center my-8'>
+              {/* {
+                isAssets ?
+                  <Assets /> : 
+                <img src={schemaUrl} alt="" className='w-3/4' />
+              } */}
+
+              <TeamCard />
+            </div>
+        </Modal>
+
         <Modal
         isOpen={modalIsOpen}
         // onAfterOpen={afterOpenModal}
