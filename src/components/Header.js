@@ -134,11 +134,16 @@ const Header = (props) => {
     })
     .then(response => {
       console.log(response.data);
-      let cScore = response.data.score
-      localStorage.setItem('currentScore', cScore)
-      // let currentSavedScore = localStorage.getItem('currentScore')
-      setCurrScore(localStorage.getItem('currentScore'))
-      setIsLoadingAfterCheck(false)
+      if (response.data.status === 501) {
+        alert(response.data.message);
+      }  else {
+
+        let cScore = response.data.score
+        localStorage.setItem('currentScore', cScore)
+        // let currentSavedScore = localStorage.getItem('currentScore')
+        setCurrScore(localStorage.getItem('currentScore'))
+        setIsLoadingAfterCheck(false)
+      }
     })
     .catch(error => {
       console.error(error);
@@ -196,7 +201,7 @@ const Header = (props) => {
   return (
     <header className='flex items-center justify-between px-6 h-20'>
         {/* Logo with timer that appears as we hover it */}
-        <LogoTimer />
+        <LogoTimer html={props.html} css={props.css} />
 
         <div id='score' className='flex items-center gap-4'>
           <h1 className='text-xl font-semibold'>Current Score:</h1>
