@@ -23,24 +23,24 @@ const scope = "email profile"
 // Blocking context menu and prevent opening inspect ----> OFF in DEV Mode 
 // TO BE TURNED ON IN DEPLOYMENT MODE
 
-// const preventKeyboardShortcuts = (event) => {
-//   if (event.keyCode === 123) {
-//     event.preventDefault();
-//   }
-//   if (event.ctrlKey && event.shiftKey && event.keyCode === 'I'.charCodeAt(0)) {
-//     event.preventDefault();
-//   }
-//   if (event.ctrlKey && event.shiftKey && event.keyCode === 'J'.charCodeAt(0)) {
-//     event.preventDefault();
-//   }
-//   if (event.ctrlKey && event.keyCode === 'U'.charCodeAt(0)) {
-//     event.preventDefault();
-//   }
-// };
+const preventKeyboardShortcuts = (event) => {
+  if (event.keyCode === 123) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.shiftKey && event.keyCode === 'I'.charCodeAt(0)) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.shiftKey && event.keyCode === 'J'.charCodeAt(0)) {
+    event.preventDefault();
+  }
+  if (event.ctrlKey && event.keyCode === 'U'.charCodeAt(0)) {
+    event.preventDefault();
+  }
+};
 
-// const preventRightClick = (event) => {
-//   event.preventDefault();
-// };
+const preventRightClick = (event) => {
+  event.preventDefault();
+};
 
 function App() {
   const navigate = useNavigate()
@@ -155,14 +155,14 @@ const [submitted, setSubmitted] = useState(localStorage.getItem('isSubmitted'));
 
   // Preventing console ----> TO BE TURNED ON IN DEPLOYMENT MODE
 
-  //   useEffect(() => {
-  //   document.addEventListener('keydown', preventKeyboardShortcuts, false);
-  //   document.addEventListener('contextmenu', preventRightClick, false)
-  //   return () => {
-  //     document.removeEventListener('keydown', preventKeyboardShortcuts, false);
-  //     document.removeEventListener('contextmenu', preventRightClick, false)
-  //   };
-  // }, []);
+    useEffect(() => {
+    document.addEventListener('keydown', preventKeyboardShortcuts, false);
+    document.addEventListener('contextmenu', preventRightClick, false)
+    return () => {
+      document.removeEventListener('keydown', preventKeyboardShortcuts, false);
+      document.removeEventListener('contextmenu', preventRightClick, false)
+    };
+  }, []);
 
   return (
     <>

@@ -27,7 +27,7 @@ const Assets = () => {
     })
     .then(response => {
       setAssteLoading(false)
-      console.log(response.data.asset_list);
+      // console.log(response.data.asset_list);
       setAsset(response.data.asset_list)
       // console.log(asset)
     })

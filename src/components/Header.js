@@ -89,7 +89,7 @@ const Header = (props) => {
 
   const handleAsset = () => {
     setIsAssets(!isAssets)
-    console.log(isAssets)
+    // console.log(isAssets)
   }
 
   const customStyles = {
@@ -120,11 +120,11 @@ const Header = (props) => {
     let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
     let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "") 
 
-    console.log(html_code);
-    console.log(css_code);
+    // console.log(html_code);
+    // console.log(css_code);
 
-    console.log(html_code);
-    console.log(css_code);
+    // console.log(html_code);
+    // console.log(css_code);
     
     
     axios.post('https://blockverseapi.brlakgec.com/score/', { html_code, css_code }, {
@@ -133,7 +133,7 @@ const Header = (props) => {
       }
     })
     .then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       if (response.data.status === 501) {
         alert(response.data.message);
       }  else {
@@ -161,8 +161,8 @@ const Header = (props) => {
   }, []);
 
   const finalSubmit = () => {
-    console.log(props.html)
-    console.log(props.css)
+    // console.log(props.html)
+    // console.log(props.css)
     let html_code = props.html
     let css_code = props.css
     // let submitted = true
@@ -173,7 +173,7 @@ const Header = (props) => {
       }
     })
         .then(response => {
-            console.log(response.data);
+            // console.log(response.data);
             localStorage.setItem('isSubmitted', true)
         })
         .catch(error => {

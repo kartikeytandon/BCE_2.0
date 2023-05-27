@@ -15,10 +15,10 @@ const TeamLeaderboard = () => {
       }
     })  
     .then(response => {
-      console.log(response.data);
+      // console.log(response.data);
       setTeamDetails(response.data.message)
-      console.log(response.data.message)
-      console.log(teamDetails);
+      // console.log(response.data.message)
+      // console.log(teamDetails);
     })
     .catch(error => {
       console.error(error);

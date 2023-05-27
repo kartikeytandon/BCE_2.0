@@ -20,18 +20,18 @@ const Login = () => {
     //   console.log("Login success", res.profileObj);
     // } else {
       const authorization_code = res.code
-      console.log("Google code", authorization_code)
+      // console.log("Google code", authorization_code)
     // }
     // email = res.profileObj.email
     // id = res.profileObj.googleId
 
     axios.post('https://blockverseapi.brlakgec.com/login/', { authorization_code })
         .then(response => {
-            console.log(response.data);
-            console.log(response.data.token);
+            // console.log(response.data);
+            // console.log(response.data.token);
             const accessToken =  response.data.token
             localStorage.setItem('accessToken', accessToken)
-            console.log(localStorage.getItem('accessToken'))
+            // console.log(localStorage.getItem('accessToken'))
             // console.log(token)
             // Cookies.set('accessToken', accessToken);
 
@@ -42,7 +42,7 @@ const Login = () => {
               setLoggedIn(true)
             }
 
-            console.log(response.data.final_submission);
+            // console.log(response.data.final_submission);
             if(response.data.final_submission === true) {
               alert("You've already Submitted")
               setLoggedIn(false)

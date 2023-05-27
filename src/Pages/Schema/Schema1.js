@@ -23,7 +23,7 @@ useEffect(() => {
     }
   })
   .then(response => {
-    console.log(response.data.schema_list);
+    // console.log(response.data.schema_list);
     setSchemas(response.data.schema_list);
     localStorage.setItem('selectedSchema', schemaSelected);
   })
@@ -33,7 +33,7 @@ useEffect(() => {
 }, []);
 
 const handleClick = (schema_id) => {
-  console.log(`Schema ${schema_id} clicked`);
+  // console.log(`Schema ${schema_id} clicked`);
   let schema = `${schema_id}`;
   axios.post('https://blockverseapi.brlakgec.com/schema_selection/', { schema }, {
     headers: {
@@ -41,7 +41,7 @@ const handleClick = (schema_id) => {
     }
   })
   .then(response => {
-    console.log(response.data);
+    // console.log(response.data);
     setSelectedSchema(true); 
     localStorage.setItem('selectedSchema', true);
     localStorage.setItem('schemaUpdated', false)
