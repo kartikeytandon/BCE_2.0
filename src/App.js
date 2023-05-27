@@ -15,6 +15,7 @@ import Logout from './components/Logout';
 import Schema from './Pages/Schema/Schema';
 import Home from './Pages/Home/Home';
 import Protected from './Pages/Protected';
+// import Protected from './Pages/Schema/Protected';
 
 const clientId = "908559699410-r9n223pa37dahsb359kr91pge6qv4tjh.apps.googleusercontent.com"
 const scope = "email profile"
