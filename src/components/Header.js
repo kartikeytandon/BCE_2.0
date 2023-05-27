@@ -97,7 +97,7 @@ const Header = (props) => {
     setDisabled(true)
     // checkDisabled()
     setTimeout(() => {setDisabled(false)}, 15000)
-    alert('you can now submit your response!');
+    // alert('you can now submit your response!');
 
     let html_code = props.html.replace(/(\r\n|\n|\r)/gm, "")
     let css_code = props.css.replace(/(\r\n|\n|\r)/gm, "") 

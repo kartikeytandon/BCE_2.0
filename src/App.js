@@ -58,7 +58,6 @@ function App() {
   }, [location.pathname, navigate])
 
 
-
 const [selectedSchema, setSelectedSchema] = useState(localStorage.getItem('selectedSchema'));
 const [submitted, setSubmitted] = useState(localStorage.getItem('isSubmitted'));
 
